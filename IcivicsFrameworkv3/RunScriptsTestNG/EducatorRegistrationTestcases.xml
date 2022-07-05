@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<test thread-count="1" parallel="classes" name="Test">
+	<test thread-count="1" parallel="classes" name="EducatorRegistration_Testscripts">
 		<classes>
-			<class name="icivics_testcases.Icivics_EducatorReg_Test" />
-			<class name="icivics_testcases.Icivics_EducatorReg1_Test" />
-			<class name="icivics_testcases.Icivics_EducatorReg2_Test" />
-			<class name="icivics_testcases.Icivics_EducatorReg3_Test" />
-			<class name="icivics_testcases.Icivics_EducatorReg4_Test" />
-			<class name="icivics_testcases.Icivics_EducatorReg5_Test" />
+			<class name="icivics_testcases.Icivics1_EducatorRegistration_Test" />
+			<class name="icivics_testcases.Icivics2_EducatorRegistration1_Test" />
+			<class name="icivics_testcases.Icivics3_EducatorRegistration2_Test" />
+			<class name="icivics_testcases.Icivics4_EducatorRegistration3_Test" />
+			<class name="icivics_testcases.Icivics5_EducatorRegistration4_Test" />
+			<class name="icivics_testcases.Icivics6_EducatorRegistration5_Test" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
