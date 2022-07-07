@@ -12,7 +12,7 @@ public class I36_HP_5HeaderMyicivicsMisc_Test extends ProjectSpecificMethods {
 
 	@BeforeTest
 	public void setValues() {
-		testCaseName = "HomepageHeaderMyIcivicsMisc";
+		testCaseName = "Homepage Header MyIcivics Misc";
 		authors = "Venkat";
 		category = "Smoke";
 		dataSheetName = "Icivics_Homepageheadermyicivicsmisc";

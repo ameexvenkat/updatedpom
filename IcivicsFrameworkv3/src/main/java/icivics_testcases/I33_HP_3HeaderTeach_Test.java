@@ -13,7 +13,7 @@ public class I33_HP_3HeaderTeach_Test extends ProjectSpecificMethods {
 
 	@BeforeTest
 	public void setValues() {
-		testCaseName = "HomepageHeaderteach";
+		testCaseName = "Homepage Header teach1";
 		authors = "Venkat";
 		category = "Smoke";
 		dataSheetName = "Icivics_Homepageheaderteach";

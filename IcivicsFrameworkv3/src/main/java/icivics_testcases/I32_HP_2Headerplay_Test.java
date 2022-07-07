@@ -12,7 +12,7 @@ public class I32_HP_2Headerplay_Test extends ProjectSpecificMethods {
 
 	@BeforeTest
 	public void setValues() {
-		testCaseName = "HomepageHeaderplay";
+		testCaseName = "Homepage Headerplay";
 		authors = "Venkat";
 		category = "Smoke";
 		dataSheetName = "Icivics_Homepageheaderplay";

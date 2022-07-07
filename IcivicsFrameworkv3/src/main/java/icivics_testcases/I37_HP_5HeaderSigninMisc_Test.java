@@ -12,7 +12,7 @@ public class I37_HP_5HeaderSigninMisc_Test extends ProjectSpecificMethods {
 
 	@BeforeTest
 	public void setValues() {
-		testCaseName = "HomepageHeadermysigninmisc";
+		testCaseName = "Homepage Header mysignin misc";
 		authors = "Venkat";
 		category = "Smoke";
 		dataSheetName = "Icivics_Homepageheadersigninmisc";
