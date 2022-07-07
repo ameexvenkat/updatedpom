@@ -3,14 +3,14 @@
 <suite name="Suite">
 	<test thread-count="5" name="Header_Testscripts">
 		<classes>
-			<class name="icivics_testcases.Icivics13_HP_1Header_Test" />
-			<class name="icivics_testcases.Icivics14_HP_1TeacherHeader_Test" />
-			<class name="icivics_testcases.Icivics15_HP_2Headerplay_Test" />
-			<class name="icivics_testcases.Icivics16_HP_3HeaderTeach_Test" />
-			<class name="icivics_testcases.Icivics17_HP_3Headerteach2_Test" />
-			<class name="icivics_testcases.Icivics18_HP_4HeaderAbout_Test" />
-			<class name="icivics_testcases.Icivics19_HP_5HeaderMyicivicsMisc_Test" />
-			<class name="icivics_testcases.Icivics20_HP_5HeaderSigninMisc_Test" />
+			<class name="icivics_testcases.I30_HP_1Header_Test" />
+			<class name="icivics_testcases.I31_HP_1TeacherHeader_Test" />
+			<class name="icivics_testcases.I32_HP_2Headerplay_Test" />
+			<class name="icivics_testcases.I33_HP_3HeaderTeach_Test" />
+			<class name="icivics_testcases.I34_HP_3Headerteach2_Test" />
+			<class name="icivics_testcases.I35_HP_4HeaderAbout_Test" />
+			<class name="icivics_testcases.I36_HP_5HeaderMyicivicsMisc_Test" />
+			<class name="icivics_testcases.I37_HP_5HeaderSigninMisc_Test" />
 		</classes>
 	</test> <!-- RegressionTest -->
 </suite> <!-- Suite -->

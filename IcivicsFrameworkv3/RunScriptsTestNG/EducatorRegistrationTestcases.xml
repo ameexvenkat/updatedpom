@@ -3,12 +3,12 @@
 <suite name="Suite">
 	<test thread-count="1" parallel="classes" name="EducatorRegistration_Testscripts">
 		<classes>
-			<class name="icivics_testcases.Icivics1_EducatorRegistration_Test" />
-			<class name="icivics_testcases.Icivics2_EducatorRegistration1_Test" />
-			<class name="icivics_testcases.Icivics3_EducatorRegistration2_Test" />
-			<class name="icivics_testcases.Icivics4_EducatorRegistration3_Test" />
-			<class name="icivics_testcases.Icivics5_EducatorRegistration4_Test" />
-			<class name="icivics_testcases.Icivics6_EducatorRegistration5_Test" />
+			<class name="icivics_testcases.I10_EducatorRegistration_Test" />
+			<class name="icivics_testcases.I11_EducatorRegistration1_Test" />
+			<class name="icivics_testcases.I12_EducatorRegistration2_Test" />
+			<class name="icivics_testcases.I13_EducatorRegistration3_Test" />
+			<class name="icivics_testcases.I14_EducatorRegistration4_Test" />
+			<class name="icivics_testcases.I15_EducatorRegistration5_Test" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
