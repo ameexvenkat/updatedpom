@@ -23,7 +23,7 @@ public class I32_HP_2Headerplay_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 0)
 	public void C8_Verifyplaysubmenu(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C8 -  When you select Play, does a submenu open below the Play button?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_2HeaderPlay(driver, node, prop).launchURL(URL).verifyplaysubmenu();
 	}
 	// C9 - Do you see links to All Games, as well as each individual game in the
@@ -32,7 +32,7 @@ public class I32_HP_2Headerplay_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 1)
 	public void C9_Verifyplaybuttonlist(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C9- Do you see links to All Games, as well as each individual game in the submenu?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_2HeaderPlay(driver, node, prop).launchURL(URL).verifyplaysubmenu().verifyplaysubmenulist();
 	}
 	// C10 - When you select a link in the submenu, are you navigated to the
@@ -42,7 +42,7 @@ public class I32_HP_2Headerplay_Test extends ProjectSpecificMethods {
 	public void C10_Verifyplaybuttonelements(String URL) throws IOException, InterruptedException {
 		node = test
 				.createNode("C10- When you select a link in the submenu, are you navigated to the appropriate page?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_2HeaderPlay(driver, node, prop).launchURL(URL).Playbuttonelementsverification(URL);
 	}
 
@@ -53,7 +53,7 @@ public class I32_HP_2Headerplay_Test extends ProjectSpecificMethods {
 	public void C12_Verifypageisunderlined(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C12- If you are viewing one of the pages in the Play submenu, is that page underlined in the submenu?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_2HeaderPlay(driver, node, prop).launchURL(URL)
 				.verifyselectedoptionunderlined();
 	}
@@ -64,7 +64,7 @@ public class I32_HP_2Headerplay_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 4)
 	public void C13_Verifyclickonplaybuttonagain(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C13- When you select Play again while the submenu is open, does the submenu close?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_2HeaderPlay(driver, node, prop).launchURL(URL).verifyplaysubmenu().clickplaybuttonagain();
 	}
 }

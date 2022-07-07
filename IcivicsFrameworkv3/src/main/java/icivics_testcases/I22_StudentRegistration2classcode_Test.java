@@ -23,7 +23,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	@Test(dataProvider = "fetchData", priority = 0)
 	public void C398_verifypagecount2(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C398 - Can you tell which page you are currently viewing in the breadcrumbs?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifypagecount2();
 	}
@@ -32,7 +32,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	@Test(dataProvider = "fetchData", priority = 1)
 	public void C399_Clickbackbutton(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C399 - Can you select Back to proceed to the previous page?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifyClickbackbutton();
 	}
@@ -41,7 +41,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	@Test(dataProvider = "fetchData", priority = 2)
 	public void C400_verifyfieldsisremembered(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C400 - When you go Back, are your entries in all fields remembered?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.Clickbackbutton().verifyclasscoderemembered().verifyfirstnameremembered().verifylastnameremembered()
 				.verifyemailremembered().verifyemailfieldremembered();
@@ -53,7 +53,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C403_clickontermsofuselink(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C403- If you select the 'Terms of Use' link, does the iCivics Terms of Use page open in a new tab");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.clickontermsofuselink();
 	}
@@ -64,7 +64,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C404_clickprivacypolicy(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C404- If you select the 'Privacy Policy' link, does the iCivics Privacy Policy page open in a new tab?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.clickprivacypolicy();
 	}
@@ -75,7 +75,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 		public void C405_verifypage2SignUpforEmailsfield(String URL) throws IOException, InterruptedException {
 			node = test.createNode(
 					"C405- As a student, are you NOT prompted to sign up for the newsletter?");
-			extent.attachReporter(reporter);
+			extent.attachReporter(spark);
 			new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 					.verifypage2noemailsubscriptioncheckbox() ;
 		}
@@ -86,7 +86,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C408_hoveronpwdfield(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C408- If you hover over the password field, do you see a hover tooltip with appropriate text?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.hoveronpwdfield();
 	}
@@ -97,7 +97,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C409_VerifyPasswordstrengthmeter(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C409- When you enter text in the Password field, do you see text indicating the current password's strength?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.VerifyPasswordstrengthmeter();
 	}
@@ -108,7 +108,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C410_VerifyPasswordindicatormatch(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C410- When you enter text in the Confirm Password field do you see text indicating whether the two passwords match?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.VerifyPasswordindicatormatch();
 	}
@@ -120,7 +120,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 		node = test.createNode(
 				"C412- If you leave a required field blank and select Next, do you receive an appropriate error message?");
 
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata().
 		verifyblankerrormsgforpwdandcpwd().verifyenterinvaliddataerror();
 	}
@@ -130,7 +130,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C412_verifytermsofuseandprivacycheckbox(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C412- You must check terms of use and privacy");
 
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifytermsofuseandprivacycheckbox();
 	}
@@ -140,7 +140,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 	public void C413_verifyblankerrormsg(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C413- Do all error messages display correctly?");
 
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifyblankerrormsg();
 	}
@@ -152,7 +152,7 @@ public class I22_StudentRegistration2classcode_Test extends ProjectSpecificMetho
 			node = test.createNode(
 					"C414- If you fill out all required fields with valid information and select Finish, are you taken to Page 3?");
 
-			extent.attachReporter(reporter);
+			extent.attachReporter(spark);
 			new StudentRegistration2classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 					.verifypage3loaded();
 		}

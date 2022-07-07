@@ -25,7 +25,7 @@ public class I31_HP_1TeacherHeader_Test extends ProjectSpecificMethods {
 	public void C3_Verifyheaderbuttonsforanonymoususer(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C3 - While on all other pages, do you see buttons for Play, Teach, About, Donate, Shop, and My iCivics in the navigation bar?(for anonymous user)");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1TeacherHeader(driver, node, prop).launchteacherpageURL(URL).playbutton().Teachbutton()
 				.aboutbutton().donatebutton().shopbutton().Verifymyicivicsbuttondisplayafterlogin();
 	}
@@ -36,7 +36,7 @@ public class I31_HP_1TeacherHeader_Test extends ProjectSpecificMethods {
 	public void C3_Verifyheaderbuttonsforauthenticateduser(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C3 - While on all other pages, do you see buttons for Play, Teach, About, Donate, Shop, and My iCivics in the navigation bar?for authenticated user");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1TeacherHeader(driver, node, prop).launchteacherpageURL(URL).signin2()
 				.Verifyheaderbuttonsafterlogin();
 	}
@@ -47,7 +47,7 @@ public class I31_HP_1TeacherHeader_Test extends ProjectSpecificMethods {
 	public void C4_Verifyheaderelemets(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C4 - Are all header elements consistent with those in the mockups?(Need to take one content from each content type");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1TeacherHeader(driver, node, prop).launchteacherpageURL(URL).verifyblogcontenttype()
 				.VerifyLogo().playbutton().Teachbutton().aboutbutton().donatebutton().shopbutton().verifysigninbutton()
 				.launchteacherpageURL(URL).verifycurriculumcontenttype().VerifyLogo().playbutton().Teachbutton()
@@ -68,7 +68,7 @@ public class I31_HP_1TeacherHeader_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 3)
 	public void C6_Verifyheaderbuttonhoverforanonymoususer(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C6 - Do all buttons have hover/click states?for anonymous user");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1TeacherHeader(driver, node, prop).launchteacherpageURL(URL).verifyplaybuttonhover()
 				.verifyteachbuttonhover().verifyaboutbuttonhover().verifydonatebuttonhover().launchteacherpageURL(URL)
 				.verifyshopbuttonhover().launchteacherpageURL(URL).verifysigninbuttonhover().signin2()
@@ -80,7 +80,7 @@ public class I31_HP_1TeacherHeader_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 4)
 	public void C6_verifyaheaderbuttonhoverforauthenticateduser(String URL) {
 		node = test.createNode("C6 - Do all buttons have hover/click states?for authenticated user");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1TeacherHeader(driver, node, prop).launchteacherpageURL(URL).signin2()
 				.verifyplaybuttonhover().verifyteachbuttonhover().verifyaboutbuttonhover().verifydonatebuttonhover()
 				.launchteacherpageURL(URL).verifyshopbuttonhover2().launchteacherpageURL(URL)
@@ -91,7 +91,7 @@ public class I31_HP_1TeacherHeader_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 5)
 	public void C7_verifyresizeheaderintohamburger(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C7 - Does the header resize responsively at different resolutions?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 
 		new HP_1TeacherHeader(driver, node, prop).launchteacherpageURL(URL).resizeheader()
 				.carddisplayinlistpattern();

@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -25,6 +26,7 @@ public class ExcelDataUtility{
 		
 	    this.xlFilePath = xlFilePath;
         fis = new FileInputStream(xlFilePath);
+        ZipSecureFile.setMinInflateRatio(-1.0d);
         workbook = new XSSFWorkbook(fis);
         fis.close();		   
 	}

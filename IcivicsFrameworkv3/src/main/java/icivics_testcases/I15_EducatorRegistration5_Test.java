@@ -21,7 +21,7 @@ public class I15_EducatorRegistration5_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 0)
 	public void C372_verifybreadcrumbspage5(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C372 - Can you tell which page you are currently viewing in the breadcrumbs?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new EducatorRegistration5(driver, node, prop).launchURL(URL).verifywithvaliddata().verifypagecount5();
 	}
 
@@ -30,7 +30,7 @@ public class I15_EducatorRegistration5_Test extends ProjectSpecificMethods {
 	public void C373_verifywelcomemessage(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C373 - Do you see a notification that a welcome message has been sent to your email address?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new EducatorRegistration5(driver, node, prop).launchURL(URL).verifywithvaliddata().verifycheckmsgdisplay();
 	}
 
@@ -38,7 +38,7 @@ public class I15_EducatorRegistration5_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 2)
 	public void C374_verifyconfirmationemail(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C374 - Do you see text that your confirmation email is on the way?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new EducatorRegistration5(driver, node, prop).launchURL(URL).verifywithvaliddata().verifyemailheaderlabel();
 	}
 
@@ -46,7 +46,7 @@ public class I15_EducatorRegistration5_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 3)
 	public void C375_verifyconfirmationemail(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C375 - Is your email displayed on the page?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new EducatorRegistration5(driver, node, prop).launchURL(URL).verifywithvaliddata()
 				.verifyregisteredemaildisplay();
 	}
@@ -55,7 +55,7 @@ public class I15_EducatorRegistration5_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 4)
 	public void C376_verifyresendbutton(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C376 - Can you select a button to resend your confirmation email?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new EducatorRegistration5(driver, node, prop).launchURL(URL).verifywithvaliddata().verifyresendbutton();
 	}
 
@@ -63,7 +63,7 @@ public class I15_EducatorRegistration5_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 5)
 	public void C377_verifynotification(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C377 - Do you see a notification when the email has been resent?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new EducatorRegistration5(driver, node, prop).launchURL(URL).verifywithvaliddata().verifyconfirmationemail();
 	}
 }

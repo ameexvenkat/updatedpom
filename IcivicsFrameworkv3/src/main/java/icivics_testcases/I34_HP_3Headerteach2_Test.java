@@ -25,7 +25,7 @@ public class I34_HP_3Headerteach2_Test extends ProjectSpecificMethods {
 	public void C19_Verifyteachsubmenu(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C19 - If you are viewing one of the pages in the Teach submenu, is that page underlined in the submenu?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_3Headerteach2(driver, node, prop).launchURL(URL).verifyteachmenu().verifytextisunderlined()
 				.verifytextisunderlined1().verifytextisunderlined2().verifytextisunderlined3().verifytextisunderlined4()
 				.verifytextisunderlined5().clickteachbuttonagain();

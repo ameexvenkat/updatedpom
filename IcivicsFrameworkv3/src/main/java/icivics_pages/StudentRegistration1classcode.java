@@ -477,7 +477,7 @@ public class StudentRegistration1classcode extends ProjectSpecificMethods {
 		scrollToTheGivenWebElement(getPropfile(gpropname2, "nextbutton"));
 
 		clickOn(getPropfile(gpropname2, "nextbutton"));
-
+		waitTime(3000);
 		WebElement codeclassalertmsg = propElement(getPropfile(gpropname2, "alertpopup1"));
 
 		verifyExactText(codeclassalertmsg, "The classcode isn't linked to a class.");

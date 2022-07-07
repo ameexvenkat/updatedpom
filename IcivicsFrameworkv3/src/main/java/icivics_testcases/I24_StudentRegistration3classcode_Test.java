@@ -23,7 +23,7 @@ public class I24_StudentRegistration3classcode_Test extends ProjectSpecificMetho
 	@Test(dataProvider = "fetchData", priority = 0)
 	public void C454_verifypagecount3(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C454 - Can you tell which page you are currently viewing in the breadcrumbs?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration3classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifypagecount3();
 	}
@@ -32,7 +32,7 @@ public class I24_StudentRegistration3classcode_Test extends ProjectSpecificMetho
 	@Test(dataProvider = "fetchData", priority = 1)
 	public void C455_verifyusernamegenerateddisplay(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C455 -Do you see a notification that displays your generated username?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration3classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifyusernamegenerateddisplay();
 	}
@@ -42,7 +42,7 @@ public class I24_StudentRegistration3classcode_Test extends ProjectSpecificMetho
 	@Test(dataProvider = "fetchData", priority = 2)
 	public void C456_verifyusernametextddisplay(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C456 -Do you see text that you will use your username and chosen password to log in?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration3classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifyusernametextddisplay();
 	}
@@ -53,7 +53,7 @@ public class I24_StudentRegistration3classcode_Test extends ProjectSpecificMetho
 	public void C457_verifyemailddisplay(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C457 -If you entered an email address, do you see a notification that displays your entered email address?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration3classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifyemailddisplay();
 	}
@@ -64,7 +64,7 @@ public class I24_StudentRegistration3classcode_Test extends ProjectSpecificMetho
 	public void C458_verifyemailtextddisplay(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C458 -If you entered an email address, do you see text that the email address can be used to log in?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration3classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 				.verifyemailtextddisplay();
 	}
@@ -76,7 +76,7 @@ public class I24_StudentRegistration3classcode_Test extends ProjectSpecificMetho
 		public void C459_clickcontinuetomyassignmentbutton(String URL) throws IOException, InterruptedException {
 			node = test.createNode(
 					"C459 -When you select 'Continue to my Assignments,' are you brought to your My iCivics page?");
-			extent.attachReporter(reporter);
+			extent.attachReporter(spark);
 			new StudentRegistration3classcode(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata()
 					.clickcontinuetomyassignmentbutton();
 		}

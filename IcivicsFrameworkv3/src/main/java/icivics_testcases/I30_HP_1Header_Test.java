@@ -23,7 +23,7 @@ public class I30_HP_1Header_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 0)
 	public void C1_VerifyLogo(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C1 - Do you see the iCivics Logo in the upper left?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1Header(driver, node, prop).launchURL(URL).VerifyLogo();
 	}
 	// C2 - While on the iCivics Home Page, do you see buttons for Donate, Shop, and
@@ -33,7 +33,7 @@ public class I30_HP_1Header_Test extends ProjectSpecificMethods {
 	public void C2_VerifyHeaderbuttonforanonymoususer(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C2 - While on the iCivics Home Page, do you see buttons for Donate, Shop,  and My iCivics in the navigation bar?for anonymous user");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1Header(driver, node, prop).launchURL(URL).VerifyDonatebutton()
 				.Verifyshopbutton().Verifymyicivicsbuttondisplayafterlogin();
 	}
@@ -44,7 +44,7 @@ public class I30_HP_1Header_Test extends ProjectSpecificMethods {
 	public void C2_VerifyHeaderbuttonforauthenticateduser(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C2 - While on the iCivics Home Page, do you see buttons for Donate, Shop,  and My iCivics in the navigation bar?for authenticated user");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1Header(driver, node, prop).launchURL(URL).signin().Verifyheaderbuttonsafterlogin();
 	}
 
@@ -53,7 +53,7 @@ public class I30_HP_1Header_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 3)
 	public void C1538_Verifydonationpopup(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C1538 - Does the donation popup NOT show?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new HP_1Header(driver, node, prop).launchURL(URL).Verifydonationpopup();
 	}
 

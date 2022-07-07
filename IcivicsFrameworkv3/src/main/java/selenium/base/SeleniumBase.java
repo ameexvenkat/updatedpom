@@ -5,12 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.Alert;
@@ -53,7 +52,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 	public void click(WebElement ele) {
 		String text = "";
 		try {
-			wait = new WebDriverWait(driver, 10);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
 			text = ele.getText();
 			ele.click();
@@ -68,7 +67,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String text = "";
 		try {
 			text = ele.getText();
-			wait = new WebDriverWait(driver, 10);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
 			ele.click();
 			reportStep("The Element with text: " + text + " clicked", "pass", false);
@@ -130,7 +129,6 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 
 	@Override
 	public void selectDropDownUsingText(WebElement ele, String value) {
-
 		new Select(ele).selectByVisibleText(value);
 	}
 
@@ -156,7 +154,6 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		} catch (WebDriverException e) {
 			System.out.println("Unknown exception occured while verifying the Text");
 		}
-
 		return false;
 	}
 
@@ -172,7 +169,6 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		} catch (WebDriverException e) {
 			System.out.println("Unknown exception occured while verifying the Text");
 		}
-
 		return false;
 	}
 
@@ -204,7 +200,6 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		} catch (WebDriverException e) {
 			System.out.println("Unknown exception occured while verifying the Attribute Text");
 		}
-
 	}
 
 	@Override
@@ -287,7 +282,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 			driver.manage().window().maximize();
 			// driver.navigate().to(url);
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		} catch (Exception e) {
 			reportStep("The Browser Could not be Launched. Hence Failed", "fail");
 			throw new RuntimeException();
@@ -312,7 +307,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 			driver.manage().window().maximize();
 			driver.navigate().to(url);
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		} catch (Exception e) {
 			reportStep("The Browser Could not be Launched. Hence Failed", "fail");
 			throw new RuntimeException();
@@ -326,15 +321,15 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		try {
 			switch (locatorType.toLowerCase()) {
 			case "id":
-				return driver.findElementById(value);
+				return driver.findElement(By.id(value));
 			case "name":
-				return driver.findElementByName(value);
+				return driver.findElement(By.name(value));
 			case "class":
-				return driver.findElementByClassName(value);
+				return driver.findElement(By.className(value));
 			case "link":
-				return driver.findElementByLinkText(value);
+				return driver.findElement(By.linkText(value));
 			case "xpath":
-				return driver.findElementByXPath(value);
+				return driver.findElement(By.xpath(value));
 			}
 		} catch (NoSuchElementException e) {
 			reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
@@ -350,15 +345,15 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		try {
 			switch (type.toLowerCase()) {
 			case "id":
-				return driver.findElementsById(value);
+				return driver.findElements(By.id(value));
 			case "name":
-				return driver.findElementsByName(value);
+				return driver.findElements(By.name(value));
 			case "class":
-				return driver.findElementsByClassName(value);
+				return driver.findElements(By.className(value));
 			case "link":
-				return driver.findElementsByLinkText(value);
+				return driver.findElements(By.linkText(value));
 			case "xpath":
-				return driver.findElementsByXPath(value);
+				return driver.findElements(By.xpath(value));
 			}
 		} catch (NoSuchElementException e) {
 			System.err.println("The Element with locator:" + type + " Not Found with value: " + value);
@@ -376,7 +371,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 	public void acceptAlert() {
 		String text = "";
 		try {
-			wait = new WebDriverWait(driver, 10);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.alertIsPresent());
 			Alert alert = driver.switchTo().alert();
 			text = alert.getText();
@@ -559,18 +554,18 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		WebElement element = null;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				wait = new WebDriverWait(driver, 10);
+				wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				element = driver.findElementById(value);
+				element = driver.findElement(By.id(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				wait = new WebDriverWait(driver, 10);
+				wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				element = driver.findElementByXPath(value);
+				element = driver.findElement(By.xpath(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
@@ -591,9 +586,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				WebElement ele = driver.findElementById(value);
+				WebElement ele = driver.findElement(By.id(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
@@ -603,9 +598,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				WebElement ele = driver.findElementByName(value);
+				WebElement ele = driver.findElement(By.name(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
@@ -615,9 +610,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("LINKTEXT")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 30);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(value)));
-				driver.findElementByLinkText(value).click();
+				driver.findElement(By.linkText(value)).click();
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -626,9 +621,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("PARTIALLINKTEXT")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 30);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(value)));
-				driver.findElementByPartialLinkText(value).click();
+				driver.findElement(By.partialLinkText(value)).click();
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -637,9 +632,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				WebElement ele = driver.findElementByClassName(value);
+				WebElement ele = driver.findElement(By.className(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
@@ -649,9 +644,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				WebElement ele = driver.findElementByTagName(value);
+				WebElement ele = driver.findElement(By.tagName(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
@@ -661,9 +656,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				WebElement ele = driver.findElementByCssSelector(value);
+				WebElement ele = driver.findElement(By.cssSelector(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
@@ -673,9 +668,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				WebElement ele = driver.findElementByXPath(value);
+				WebElement ele = driver.findElement(By.xpath(value));
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 				reportStep("The element : " + value + " is clicked.", "PASS");
 				bReturn = true;
@@ -701,10 +696,10 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				driver.findElementById(value).clear();
-				driver.findElementById(value).sendKeys(input);
+				driver.findElement(By.id(value)).clear();
+				driver.findElement(By.id(value)).sendKeys(input);
 				reportStep("The data: " + input + " entered successfully in field :" + value, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -713,10 +708,10 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				driver.findElementByName(value).clear();
-				driver.findElementByName(value).sendKeys(input);
+				driver.findElement(By.name(value)).clear();
+				driver.findElement(By.name(value)).sendKeys(input);
 				reportStep("The data: " + input + " entered successfully in field :" + value, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -725,10 +720,10 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				driver.findElementByClassName(value).clear();
-				driver.findElementByClassName(value).sendKeys(input);
+				driver.findElement(By.className(value)).clear();
+				driver.findElement(By.className(value)).sendKeys(input);
 				reportStep("The data: " + input + " entered successfully in field :" + value, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -737,10 +732,10 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				driver.findElementByTagName(value).clear();
-				driver.findElementByTagName(value).sendKeys(input);
+				driver.findElement(By.tagName(value)).clear();
+				driver.findElement(By.tagName(value)).sendKeys(input);
 				reportStep("The data: " + input + " entered successfully in field :" + value, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -749,10 +744,10 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				driver.findElementByCssSelector(value).clear();
-				driver.findElementByCssSelector(value).sendKeys(input);
+				driver.findElement(By.cssSelector(value)).clear();
+				driver.findElement(By.cssSelector(value)).sendKeys(input);
 				reportStep("The data: " + input + " entered successfully in field :" + value, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -761,10 +756,10 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				driver.findElementByXPath(value).clear();
-				driver.findElementByXPath(value).sendKeys(input);
+				driver.findElement(By.xpath(value)).clear();
+				driver.findElement(By.xpath(value)).sendKeys(input);
 				reportStep("The data: " + input + " entered successfully in field :" + value, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -789,7 +784,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				new Select(driver.findElementById(value)).selectByValue(dValue);
+				new Select(driver.findElement(By.id(value))).selectByValue(dValue);
 				reportStep("The element with id: " + value + " is selected with value: " + dValue, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -798,7 +793,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				new Select(driver.findElementByName(value)).selectByValue(dValue);
+				new Select(driver.findElement(By.name(value))).selectByValue(dValue);
 				reportStep("The element with name: " + value + " is selected with value: " + dValue, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -807,7 +802,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				new Select(driver.findElementByClassName(value)).selectByValue(dValue);
+				new Select(driver.findElement(By.className(value))).selectByValue(dValue);
 				reportStep("The element with classname: " + value + " is selected with value: " + dValue, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -816,7 +811,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				new Select(driver.findElementByTagName(value)).selectByValue(dValue);
+				new Select(driver.findElement(By.tagName(value))).selectByValue(dValue);
 				reportStep("The element with tagname: " + value + " is selected with value: " + dValue, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -825,7 +820,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				new Select(driver.findElementByCssSelector(value)).selectByValue(dValue);
+				new Select(driver.findElement(By.cssSelector(value))).selectByValue(dValue);
 				reportStep("The element with cssselector: " + value + " is selected with value: " + dValue, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -834,7 +829,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				new Select(driver.findElementByXPath(value)).selectByValue(dValue);
+				new Select(driver.findElement(By.xpath(value))).selectByValue(dValue);
 				reportStep("The element with xpath: " + value + " is selected with value: " + dValue, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -855,7 +850,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 
 		boolean bReturn = false;
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.urlToBe(expected));
 			reportStep("The expected " + expected + " url as same as the " + driver.getCurrentUrl() + " actual url.",
 					"PASS");
@@ -879,14 +874,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				if (driver.findElementById(value).getText().trim().contains(expected)) {
-					reportStep("The text: " + driver.findElementById(value).getText().trim()
+				if (driver.findElement(By.id(value)).getText().trim().contains(expected)) {
+					reportStep("The text: " + driver.findElement(By.id(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementById(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.id(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -895,14 +890,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				if (driver.findElementByName(value).getText().trim().contains(expected)) {
-					reportStep("The text: " + driver.findElementByName(value).getText().trim()
+				if (driver.findElement(By.name(value)).getText().trim().contains(expected)) {
+					reportStep("The text: " + driver.findElement(By.name(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByName(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.name(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -911,14 +906,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				if (driver.findElementByClassName(value).getText().trim().contains(expected)) {
-					reportStep("The text: " + driver.findElementByClassName(value).getText().trim()
+				if (driver.findElement(By.className(value)).getText().trim().contains(expected)) {
+					reportStep("The text: " + driver.findElement(By.className(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByClassName(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.className(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -927,14 +922,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				if (driver.findElementByTagName(value).getText().trim().contains(expected)) {
-					reportStep("The text: " + driver.findElementByTagName(value).getText().trim()
+				if (driver.findElement(By.tagName(value)).getText().trim().contains(expected)) {
+					reportStep("The text: " + driver.findElement(By.tagName(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByTagName(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.tagName(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -943,14 +938,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				if (driver.findElementByCssSelector(value).getText().trim().contains(expected)) {
-					reportStep("The text: " + driver.findElementByCssSelector(value).getText().trim()
+				if (driver.findElement(By.cssSelector(value)).getText().trim().contains(expected)) {
+					reportStep("The text: " + driver.findElement(By.cssSelector(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByCssSelector(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.cssSelector(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -959,14 +954,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				if (driver.findElementByXPath(value).getText().trim().contains(expected)) {
-					reportStep("The text: " + driver.findElementByXPath(value).getText().trim()
+				if (driver.findElement(By.xpath(value)).getText().trim().contains(expected)) {
+					reportStep("The text: " + driver.findElement(By.xpath(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByXPath(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.xpath(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -991,54 +986,54 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		List<WebElement> wReturn = null;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				wReturn = driver.findElementsById(value);
+				wReturn = driver.findElements(By.id(value));
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 				reportStep("Unable to find element " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				wReturn = driver.findElementsByName(value);
+				wReturn = driver.findElements(By.name(value));
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 				reportStep("Unable to find element " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				wReturn = driver.findElementsByClassName(value);
+				wReturn = driver.findElements(By.className(value));
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 				reportStep("Unable to find element " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				wReturn = driver.findElementsByTagName(value);
+				wReturn = driver.findElements(By.tagName(value));
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 				reportStep("Unable to find element " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				wReturn = driver.findElementsByCssSelector(value);
+				wReturn = driver.findElements(By.cssSelector(value));
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 				reportStep("Unable to find element " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				wReturn = driver.findElementsByXPath(value);
+				wReturn = driver.findElements(By.xpath(value));
 			} catch (Exception e) {
 				Log.fatal("Unable to find element " + e.toString());
 				reportStep("Unable to find element " + e.toString(), "FAIL");
@@ -1057,7 +1052,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 
 		boolean bReturn = false;
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			if (element.getText().trim().equals(expected)) {
 				reportStep("The text: " + element.getText().trim() + " matches with the value : " + expected, "PASS");
@@ -1083,14 +1078,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				if (driver.findElementById(value).getText().trim().equals(expected)) {
-					reportStep("The text: " + driver.findElementById(value).getText().trim()
+				if (driver.findElement(By.id(value)).getText().trim().equals(expected)) {
+					reportStep("The text: " + driver.findElement(By.id(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementById(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.id(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -1099,14 +1094,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				if (driver.findElementByName(value).getText().trim().equals(expected)) {
-					reportStep("The text: " + driver.findElementByName(value).getText().trim()
+				if (driver.findElement(By.name(value)).getText().trim().equals(expected)) {
+					reportStep("The text: " + driver.findElement(By.name(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByName(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.name(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -1115,14 +1110,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				if (driver.findElementByClassName(value).getText().trim().equals(expected)) {
-					reportStep("The text: " + driver.findElementByClassName(value).getText().trim()
+				if (driver.findElement(By.className(value)).getText().trim().equals(expected)) {
+					reportStep("The text: " + driver.findElement(By.className(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByClassName(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.className(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -1131,14 +1126,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				if (driver.findElementByTagName(value).getText().trim().equals(expected)) {
-					reportStep("The text: " + driver.findElementByTagName(value).getText().trim()
+				if (driver.findElement(By.tagName(value)).getText().trim().equals(expected)) {
+					reportStep("The text: " + driver.findElement(By.tagName(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByTagName(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.tagName(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -1147,14 +1142,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				if (driver.findElementByCssSelector(value).getText().trim().equals(expected)) {
-					reportStep("The text: " + driver.findElementByCssSelector(value).getText().trim()
+				if (driver.findElement(By.cssSelector(value)).getText().trim().equals(expected)) {
+					reportStep("The text: " + driver.findElement(By.cssSelector(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByCssSelector(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.cssSelector(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -1163,14 +1158,14 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				if (driver.findElementByXPath(value).getText().trim().equals(expected)) {
-					reportStep("The text: " + driver.findElementByXPath(value).getText().trim()
+				if (driver.findElement(By.xpath(value)).getText().trim().equals(expected)) {
+					reportStep("The text: " + driver.findElement(By.xpath(value)).getText().trim()
 							+ " matches with the value : " + expected, "PASS");
 					bReturn = true;
 				} else {
-					reportStep("The text: " + driver.findElementByXPath(value).getText().trim()
+					reportStep("The text: " + driver.findElement(By.xpath(value)).getText().trim()
 							+ " did not match with the value : " + expected, "FAIL");
 				}
 			} catch (Exception e) {
@@ -1203,7 +1198,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		try {
 			driver.get(url);
 			Log.info("Invoke AUT: " + url + " in " + browser + " browser successfully.");
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			Log.info("Implicit wait applied on the driver for 30 seconds.");
 			reportStep("Invoke AUT: " + url + " in " + browser + " browser successfully.", "PASS");
 		} catch (Exception e) {
@@ -1224,7 +1219,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				new Select(driver.findElementById(value)).selectByVisibleText(visibleText);
+				new Select(driver.findElement(By.id(value))).selectByVisibleText(visibleText);
 				reportStep("The element with id: " + value + " is selected with visible text: " + visibleText, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1233,7 +1228,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				new Select(driver.findElementByName(value)).selectByVisibleText(visibleText);
+				new Select(driver.findElement(By.name(value))).selectByVisibleText(visibleText);
 				reportStep("The element with name: " + value + " is selected with visible text: " + visibleText,
 						"PASS");
 				bReturn = true;
@@ -1243,7 +1238,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				new Select(driver.findElementByClassName(value)).selectByVisibleText(visibleText);
+				new Select(driver.findElement(By.className(value))).selectByVisibleText(visibleText);
 				reportStep("The element with classname: " + value + " is selected with visible text: " + visibleText,
 						"PASS");
 				bReturn = true;
@@ -1253,7 +1248,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				new Select(driver.findElementByTagName(value)).selectByVisibleText(visibleText);
+				new Select(driver.findElement(By.tagName(value))).selectByVisibleText(visibleText);
 				reportStep("The element with tagname: " + value + " is selected with visible text: " + visibleText,
 						"PASS");
 				bReturn = true;
@@ -1263,7 +1258,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				new Select(driver.findElementByCssSelector(value)).selectByVisibleText(visibleText);
+				new Select(driver.findElement(By.cssSelector(value))).selectByVisibleText(visibleText);
 				reportStep("The element with cssselector: " + value + " is selected with visible text: " + visibleText,
 						"PASS");
 				bReturn = true;
@@ -1273,7 +1268,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				new Select(driver.findElementByXPath(value)).selectByVisibleText(visibleText);
+				new Select(driver.findElement(By.xpath(value))).selectByVisibleText(visibleText);
 				reportStep("The element with xpath: " + value + " is selected with visible text: " + visibleText,
 						"PASS");
 				bReturn = true;
@@ -1311,9 +1306,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		boolean bReturn = false;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				ele = driver.findElementById(value);
+				ele = driver.findElement(By.id(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by id : " + value + " is performed.", "PASS");
@@ -1323,9 +1318,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				ele = driver.findElementByName(value);
+				ele = driver.findElement(By.name(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by name : " + value + " is performed.", "PASS");
@@ -1335,9 +1330,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("LINKTEXT")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(value)));
-				ele = driver.findElementByLinkText(value);
+				ele = driver.findElement(By.linkText(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by linktext : " + value + " is performed.", "PASS");
@@ -1347,9 +1342,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("PARTIALLINKTEXT")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(value)));
-				ele = driver.findElementByPartialLinkText(value);
+				ele = driver.findElement(By.partialLinkText(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by partial linktext : " + value + " is performed.", "PASS");
@@ -1359,9 +1354,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				ele = driver.findElementByClassName(value);
+				ele = driver.findElement(By.className(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by classname : " + value + " is performed.", "PASS");
@@ -1371,9 +1366,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				ele = driver.findElementByTagName(value);
+				ele = driver.findElement(By.tagName(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by tagname : " + value + " is performed.", "PASS");
@@ -1383,9 +1378,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				ele = driver.findElementByCssSelector(value);
+				ele = driver.findElement(By.cssSelector(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by cssselector : " + value + " is performed.", "PASS");
@@ -1395,9 +1390,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				ele = driver.findElementByXPath(value);
+				ele = driver.findElement(By.xpath(value));
 				builder.moveToElement(ele).click().build().perform();
 				bReturn = true;
 				reportStep("The mouse over by xpath : " + value + " is performed.", "PASS");
@@ -1433,7 +1428,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		boolean bReturn = false;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 1);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
 				reportStep(value + " : id is avaliable in the DOM elements.", "PASS");
 				bReturn = true;
@@ -1442,7 +1437,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 1);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
 				reportStep(value + " : name is avaliable in the DOM elements.", "PASS");
 				bReturn = true;
@@ -1451,7 +1446,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 1);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
 				reportStep(value + " : class name is avaliable in the DOM elements.", "PASS");
 				bReturn = true;
@@ -1460,7 +1455,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 1);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
 				reportStep(value + " : tag name is avaliable in the DOM elements.", "PASS");
 				bReturn = true;
@@ -1469,7 +1464,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 1);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
 				reportStep(value + " : css selector is avaliable in the DOM elements.", "PASS");
 				bReturn = true;
@@ -1478,7 +1473,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 1);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
 				reportStep(value + " : Xpath is avaliable in the DOM elements.", "PASS");
 				bReturn = true;
@@ -1522,54 +1517,54 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		WebElement wReturn = null;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				wReturn = driver.findElementById(value);
+				wReturn = driver.findElement(By.id(value));
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
 				reportStep("Unable to find the id : " + value + " in the DOM elements. " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				wReturn = driver.findElementByName(value);
+				wReturn = driver.findElement(By.name(value));
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
 				reportStep("Unable to find the id : " + value + " in the DOM elements. " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				wReturn = driver.findElementByClassName(value);
+				wReturn = driver.findElement(By.className(value));
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
 				reportStep("Unable to find the id : " + value + " in the DOM elements. " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				wReturn = driver.findElementByTagName(value);
+				wReturn = driver.findElement(By.tagName(value));
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
 				reportStep("Unable to find the id : " + value + " in the DOM elements. " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				wReturn = driver.findElementByCssSelector(value);
+				wReturn = driver.findElement(By.cssSelector(value));
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
 				reportStep("Unable to find the id : " + value + " in the DOM elements. " + e.toString(), "FAIL");
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				wReturn = driver.findElementByXPath(value);
+				wReturn = driver.findElement(By.xpath(value));
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
 				reportStep("Unable to find the id : " + value + " in the DOM elements. " + e.toString(), "FAIL");
@@ -1588,7 +1583,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 
 		boolean bReturn = false;
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.titleContains(expected));
 			reportStep("The Title of the page is " + driver.getTitle() + " same as the expected " + expected, "PASS");
 			bReturn = true;
@@ -1609,7 +1604,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		boolean bReturn = false;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				bReturn = driver.findElementById(value).isSelected();
+				bReturn = driver.findElement(By.id(value)).isSelected();
 				reportStep("The checkbox " + value + " is checked default.", "PASS");
 			} catch (Exception e) {
 				Log.error("Unable to find the id : " + value + " in the DOM elements. " + e.toString());
@@ -1629,7 +1624,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		String value = data[1];
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				new Select(driver.findElementById(value)).selectByIndex(index);
+				new Select(driver.findElement(By.id(value))).selectByIndex(index);
 				reportStep("The element with id: " + value + " is selected with index: " + index, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1638,7 +1633,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				new Select(driver.findElementByName(value)).selectByIndex(index);
+				new Select(driver.findElement(By.name(value))).selectByIndex(index);
 				reportStep("The element with name: " + value + " is selected with index: " + index, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1647,7 +1642,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				new Select(driver.findElementByClassName(value)).selectByIndex(index);
+				new Select(driver.findElement(By.className(value))).selectByIndex(index);
 				reportStep("The element with classname: " + value + " is selected with index: " + index, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1656,7 +1651,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				new Select(driver.findElementByTagName(value)).selectByIndex(index);
+				new Select(driver.findElement(By.tagName(value))).selectByIndex(index);
 				reportStep("The element with tagname: " + value + " is selected with index: " + index, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1665,7 +1660,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				new Select(driver.findElementByCssSelector(value)).selectByIndex(index);
+				new Select(driver.findElement(By.cssSelector(value))).selectByIndex(index);
 				reportStep("The element with cssselector: " + value + " is selected with index: " + index, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1674,7 +1669,7 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				new Select(driver.findElementByXPath(value)).selectByIndex(index);
+				new Select(driver.findElement(By.xpath(value))).selectByIndex(index);
 				reportStep("The element with xpath: " + value + " is selected with index: " + index, "PASS");
 				bReturn = true;
 			} catch (Exception e) {
@@ -1710,9 +1705,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		boolean bReturn = false;
 		if (key.equalsIgnoreCase("ID")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(value)));
-				ele = driver.findElementById(value);
+				ele = driver.findElement(By.id(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by id : " + value + " is performed.", "PASS");
@@ -1722,9 +1717,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("NAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(value)));
-				ele = driver.findElementByName(value);
+				ele = driver.findElement(By.name(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by name : " + value + " is performed.", "PASS");
@@ -1734,9 +1729,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("LINKTEXT")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(value)));
-				ele = driver.findElementByLinkText(value);
+				ele = driver.findElement(By.linkText(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by linktext : " + value + " is performed.", "PASS");
@@ -1746,9 +1741,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("PARTIALLINKTEXT")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(value)));
-				ele = driver.findElementByPartialLinkText(value);
+				ele = driver.findElement(By.partialLinkText(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by partial linktext : " + value + " is performed.", "PASS");
@@ -1758,9 +1753,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CLASSNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(value)));
-				ele = driver.findElementByClassName(value);
+				ele = driver.findElement(By.className(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by classname : " + value + " is performed.", "PASS");
@@ -1770,9 +1765,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("TAGNAME")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName(value)));
-				ele = driver.findElementByTagName(value);
+				ele = driver.findElement(By.tagName(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by tagname : " + value + " is performed.", "PASS");
@@ -1782,9 +1777,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("CSSSELECTOR")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(value)));
-				ele = driver.findElementByCssSelector(value);
+				ele = driver.findElement(By.cssSelector(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by cssselector : " + value + " is performed.", "PASS");
@@ -1794,9 +1789,9 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 			}
 		} else if (key.equalsIgnoreCase("XPATH")) {
 			try {
-				WebDriverWait wait = new WebDriverWait(driver, 10);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(value)));
-				ele = driver.findElementByXPath(value);
+				ele = driver.findElement(By.xpath(value));
 				builder.moveToElement(ele).build().perform();
 				bReturn = true;
 				reportStep("The mouse over by xpath : " + value + " is performed.", "PASS");
@@ -1820,25 +1815,25 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		WebElement element = null;
 		if (key.equalsIgnoreCase("XPATH"))
 			try {
-				element = driver.findElementByXPath(value);
+				element = driver.findElement(By.xpath(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("ID"))
 			try {
-				element = driver.findElementById(value);
+				element = driver.findElement(By.id(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("CSSSELECTOR"))
 			try {
-				element = driver.findElementByCssSelector(value);
+				element = driver.findElement(By.cssSelector(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("CLASSNAME"))
 			try {
-				element = driver.findElementByClassName(value);
+				element = driver.findElement(By.className(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
@@ -1863,14 +1858,12 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		try {
 			fis = new FileInputStream("./icivics_Properties/" + propname + ".properties");
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		prop = new Properties();
 		try {
 			prop.load(fis);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -1901,25 +1894,25 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		WebElement element = null;
 		if (key.equalsIgnoreCase("XPATH"))
 			try {
-				element = driver.findElementByXPath(value);
+				element = driver.findElement(By.xpath(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("ID"))
 			try {
-				element = driver.findElementById(value);
+				element = driver.findElement(By.id(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("CSSSELECTOR"))
 			try {
-				element = driver.findElementByCssSelector(value);
+				element = driver.findElement(By.cssSelector(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("CLASSNAME"))
 			try {
-				element = driver.findElementByClassName(value);
+				element = driver.findElement(By.className(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
@@ -1935,25 +1928,25 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		List<WebElement> element = null;
 		if (key.equalsIgnoreCase("XPATH"))
 			try {
-				element = driver.findElementsByXPath(value);
+				element = driver.findElements(By.xpath(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("ID"))
 			try {
-				element = driver.findElementsById(value);
+				element = driver.findElements(By.id(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("CSSSELECTOR"))
 			try {
-				element = driver.findElementsByCssSelector(value);
+				element = driver.findElements(By.cssSelector(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}
 		else if (key.equalsIgnoreCase("CLASSNAME"))
 			try {
-				element = driver.findElementsByClassName(value);
+				element = driver.findElements(By.className(value));
 			} catch (Exception e) {
 				reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value, "fail");
 			}

@@ -22,7 +22,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 0)
 	public void C383_Verifybreadcrumbs(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C383 - Do you see a set of 3 numbered page breadcrumbs?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).verifystudentpage(URL).verifybreadcrumbs();
 	}
 
@@ -30,7 +30,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 1)
 	public void C384_Verifybreadcrumbspage(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C384 - Can you tell which page you are currently viewing in the breadcrumbs?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).verifypagecount1();
 	}
 
@@ -38,7 +38,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 2)
 	public void C385_Verifyvideolink(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C385 - If you select the Watch our student registration help video link");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).verifyregistrationvideolink();
 	}
 
@@ -48,7 +48,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	public void C387_verifytextfields(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C387 - Do you see fields for Username, First Name, Last Name, E-mail address, and Verify email address?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).Verifyusernametextfields()
 				.Verifyfirstnamenametextfields().Verifylastnametextfields().Verifyemailtextfields()
 				.Verifyemail2textfields();
@@ -58,7 +58,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 4)
 	public void C388_verifyusernamepregenerated(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C388 - Is a username pre-generated when you arrive on the page?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).usernamepregenerated();
 	}
 
@@ -67,7 +67,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 5)
 	public void C389_verifyusernamepregeneratedrandomly(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C389 - Can you select a button to randomly generate a new username in the field?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).usernamegeneratedrandomly();
 	}
 
@@ -75,7 +75,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 6)
 	public void C390_verifyentertextinallfields(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C390 - Can you enter text in every field?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).entertextinusernamefield()
 				.entertextinfirstnamefield().entertextinlastnamefield().entertextinemailfield()
 				.entertextinverifyemailfield();
@@ -85,7 +85,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	@Test(dataProvider = "fetchData", priority = 7)
 	public void C391_verifyfieldsmarkedwithanasterisk(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C391 - Are required fields marked with an asterisk?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).usernameAsteriks().firstnameAsteriks()
 				.lastnameAsteriks().emailAsteriks().verifyemailAsteriks();
 	}
@@ -96,7 +96,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	public void C392_verifyemailtooltips(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C392 - If you hover over the email/verify email address fields, do you see a hover tooltip with appropriate text?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).hoveronemailfield().hoveronverifyemailfield();
 	}
 
@@ -106,7 +106,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	public void C393_verifyemailerrormsg(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C393 - If you enter invalid information in a required field and select Next, do you receive an appropriate error message?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).Enterinvalidfirstname().Enterinvalidlastname()
 				.Enterinvalidemailfield().Enterinvalidverifyemailfield().clicknextbutton()
 				.verifyerrormsgforinvaliddatasubmit();
@@ -118,7 +118,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	public void C394_verifyblankerrormsg(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C394 - If you leave a required field blank and select Next, do you receive an appropriate error message?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).verifyerrormsgblankfieldall()
 				.verifyerrormsgfirstnameblankfield().verifyerrormsglastnameblankfield().verifyerrormsgemailblankfield()
 				.verifyerrormsgverifyemailblankfield();
@@ -130,7 +130,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 	public void C396_verifyvalidregistration(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C396 - If you fill out all required fields with valid information and select Next, are you taken to Page 2?");
-		extent.attachReporter(reporter);
+		extent.attachReporter(spark);
 		new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).verifyregistrationwithvaliddata();
 	}
 	
@@ -138,7 +138,7 @@ public class I21_StudentRegistration1Email_Test extends ProjectSpecificMethods {
 		@Test(dataProvider = "fetchData", priority = 12)
 		public void C397_Verifyclasscodelink(String URL) throws IOException, InterruptedException {
 			node = test.createNode("C397 - Does classcode link lead to class code page");
-			extent.attachReporter(reporter);
+			extent.attachReporter(spark);
 			new StudentRegistration1Email(driver, node, prop).launchstudentURL(URL).verifyclasscodelink();
 		}
 }
