@@ -1,62 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" parallel="classes" name="Regression_Testscripts(failed)">
+  <test thread-count="5" parallel="classes" name="EducatorRegistration_Testscripts(failed)">
     <classes>
+      <class name="icivics_testcases.I12_EducatorRegistration2_Test">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="afterMethod"/>
+          <include name="C347_verifyvalidsubmission"/>
+          <include name="C338_verifybreadcrumbspage1"/>
+          <include name="C342_verifymakeselection"/>
+          <include name="C346_verifyerrormsgboxcolor"/>
+          <include name="C345_verifyblankerrormsg"/>
+          <include name="startReport"/>
+          <include name="C341_verifyRoleandGradeLevel"/>
+          <include name="C343_verifyotheradditionalfield"/>
+          <include name="C339_verifypreviouspage"/>
+          <include name="C344_verifyasterisk"/>
+          <include name="tearDownClass"/>
+          <include name="stopReport"/>
+          <include name="setValues"/>
+          <include name="report"/>
+          <include name="beforeMethod"/>
+          <include name="C340_verifyalldataremembered"/>
+        </methods>
+      </class> <!-- icivics_testcases.I12_EducatorRegistration2_Test -->
+      <class name="icivics_testcases.I11_EducatorRegistration1_Test">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="C327_verifybreadcrumbspage1"/>
+          <include name="afterMethod"/>
+          <include name="C328_verifytextfields"/>
+          <include name="setValues"/>
+          <include name="startReport"/>
+          <include name="C334_verifyemailerrormsg"/>
+          <include name="C335_verifyblankerrormsg"/>
+          <include name="C332_verifyfieldsmarkedwithanasterisk"/>
+          <include name="C330_verifyusernamepregeneratedrandomly"/>
+          <include name="C333_verifyemailtooltips"/>
+          <include name="tearDownClass"/>
+          <include name="stopReport"/>
+          <include name="C336_verifyinvaliderrormsg"/>
+          <include name="report"/>
+          <include name="beforeMethod"/>
+          <include name="C331_verifyentertextinallfields"/>
+          <include name="C329_verifyusernamepregenerated"/>
+          <include name="C337_verifyvalidregistration"/>
+        </methods>
+      </class> <!-- icivics_testcases.I11_EducatorRegistration1_Test -->
+      <class name="icivics_testcases.I13_EducatorRegistration3_Test">
+        <methods>
+          <include name="C349_verifypreviouspage"/>
+          <include name="setUpClass"/>
+          <include name="C348_verifybreadcrumbspage3"/>
+          <include name="C357_verifyvalidsubmission"/>
+          <include name="afterMethod"/>
+          <include name="C352_verifyallfieldsallowtoentertextandmakeselection"/>
+          <include name="C354_verifyallfieldswithinvaliddata"/>
+          <include name="startReport"/>
+          <include name="setValues"/>
+          <include name="C355_verifyallfieldswithblankfield"/>
+          <include name="C351_verifyallpage3fields"/>
+          <include name="tearDownClass"/>
+          <include name="stopReport"/>
+          <include name="report"/>
+          <include name="beforeMethod"/>
+          <include name="C350_verifyalldataremembered"/>
+        </methods>
+      </class> <!-- icivics_testcases.I13_EducatorRegistration3_Test -->
       <class name="icivics_testcases.I15_EducatorRegistration5_Test">
         <methods>
-          <include name="C374_verifyconfirmationemail" invocation-numbers="0"/>
           <include name="setUpClass"/>
+          <include name="C376_verifyresendbutton"/>
           <include name="afterMethod"/>
-          <include name="C377_verifynotification" invocation-numbers="0"/>
+          <include name="C375_verifyconfirmationemail"/>
+          <include name="startReport"/>
+          <include name="C374_verifyconfirmationemail"/>
+          <include name="C373_verifywelcomemessage"/>
+          <include name="tearDownClass"/>
+          <include name="C377_verifynotification"/>
           <include name="setValues"/>
           <include name="stopReport"/>
           <include name="report"/>
           <include name="beforeMethod"/>
-          <include name="tearDownClass"/>
-          <include name="startReport"/>
+          <include name="C372_verifybreadcrumbspage5"/>
         </methods>
       </class> <!-- icivics_testcases.I15_EducatorRegistration5_Test -->
-      <class name="icivics_testcases.I20_StudentRegistration1classcode_Test">
-        <methods>
-          <include name="setUpClass"/>
-          <include name="afterMethod"/>
-          <include name="stopReport"/>
-          <include name="setValues"/>
-          <include name="report"/>
-          <include name="beforeMethod"/>
-          <include name="tearDownClass"/>
-          <include name="startReport"/>
-          <include name="C433_verifyerrormsgverifyemailblankfield" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- icivics_testcases.I20_StudentRegistration1classcode_Test -->
       <class name="icivics_testcases.I14_EducatorRegistration4_Test">
         <methods>
           <include name="setValues"/>
           <include name="setUpClass"/>
           <include name="afterMethod"/>
-          <include name="C364_verifyallfieldasterisk" invocation-numbers="0"/>
+          <include name="C364_verifyallfieldasterisk"/>
+          <include name="C370_verifyallfieldswithblankandinvaliddata"/>
+          <include name="C361_verifyallpage3fields"/>
+          <include name="C362_verifySignUpischecked"/>
+          <include name="C368_verifyallfieldswithinvaliddata"/>
+          <include name="C371_verifyvalidsubmission"/>
+          <include name="C367_verifypasswordIndicatormatch"/>
+          <include name="startReport"/>
+          <include name="C360_verifyalldataremembered"/>
+          <include name="C365_verifypasswordtooltips"/>
+          <include name="C366_verifypasswordstrengthIndicator"/>
+          <include name="tearDownClass"/>
+          <include name="C359_verifypreviouspage"/>
+          <include name="C363_verifyallpage4fields"/>
           <include name="stopReport"/>
           <include name="report"/>
           <include name="beforeMethod"/>
-          <include name="tearDownClass"/>
-          <include name="C369_verifyallfieldswithblankdata" invocation-numbers="0"/>
-          <include name="startReport"/>
+          <include name="C358_verifybreadcrumbspage4"/>
+          <include name="C369_verifyallfieldswithblankdata"/>
         </methods>
       </class> <!-- icivics_testcases.I14_EducatorRegistration4_Test -->
-      <class name="icivics_testcases.I12_EducatorRegistration2_Test">
+      <class name="icivics_testcases.I10_EducatorRegistration_Test">
         <methods>
+          <include name="C325_Verifyerrormsg"/>
           <include name="setUpClass"/>
+          <include name="C321_VerifyallpageElements"/>
           <include name="afterMethod"/>
-          <include name="stopReport"/>
+          <include name="startReport"/>
+          <include name="C326_Verifybreadcrumbs"/>
+          <include name="C324_WindowResize"/>
           <include name="setValues"/>
+          <include name="tearDownClass"/>
+          <include name="C322_ButtonHover"/>
+          <include name="stopReport"/>
           <include name="report"/>
           <include name="beforeMethod"/>
-          <include name="tearDownClass"/>
-          <include name="C346_verifyerrormsgboxcolor" invocation-numbers="0"/>
-          <include name="startReport"/>
+          <include name="C323_Verifyallbuttonlinks"/>
         </methods>
-      </class> <!-- icivics_testcases.I12_EducatorRegistration2_Test -->
+      </class> <!-- icivics_testcases.I10_EducatorRegistration_Test -->
     </classes>
-  </test> <!-- Regression_Testscripts(failed) -->
+  </test> <!-- EducatorRegistration_Testscripts(failed) -->
 </suite> <!-- Failed suite [Suite] -->

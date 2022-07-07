@@ -13,8 +13,10 @@ import org.testng.annotations.BeforeSuite;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
@@ -31,17 +33,20 @@ public abstract class Reporter extends AbstractTestNGCucumberTests {
 	
 	@BeforeSuite
 	public void startReport() {
-		String date = new SimpleDateFormat("dd-MMM-yy").format(new Date());
+		String date = new SimpleDateFormat("dd-MMM-yy hh-mm-ss").format(new Date());
 		file = new File("./reports/"+date);
 		if(!file.exists()) {
 			System.out.println("Exists? "+file.exists());
 			file.mkdir();
 		}
-		spark = new ExtentSparkReporter(file.toString()+"./result.html");
+		String date1 = new SimpleDateFormat("dd-MMM-yy").format(new Date());
+		spark = new ExtentSparkReporter(file.toString()+"./result "+date1+".html");
+		ExtentSparkReporter sparkFail = new ExtentSparkReporter("reports/SparkFail.html").filter().statusFilter().as(new Status[]{ Status.FAIL }).apply();
 		spark.config().setDocumentTitle("ICIVICS TEST REPORT");
 		spark.config().setReportName("ICIVICS AUTOMATION DASHBOARD"); 
+		spark.config().setTheme(Theme.STANDARD);
 		extent = new ExtentReports();
-		extent.attachReporter(spark);
+		extent.attachReporter(spark, sparkFail);
 	}
 	
     @BeforeClass
@@ -70,7 +75,7 @@ public abstract class Reporter extends AbstractTestNGCucumberTests {
 		reportStep(desc, status, true);
 	}
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void stopReport() {
     	extent.flush();
     }
