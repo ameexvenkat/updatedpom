@@ -59,7 +59,7 @@ public class StudentRegistration2classcode extends ProjectSpecificMethods {
 		String host = data[1];
 		String emailId = name + number + "@" + host;
 
-		writePropfile("StudentRegistration/email3", "email3", emailId);
+		writePropfile("StudentRegistration/email2", "email2", emailId);
 		WebElement email = propElement(getPropfile(gpropname2, "Emailaddress"));
 		email.clear();
 		email.sendKeys(emailId);
@@ -177,7 +177,7 @@ public class StudentRegistration2classcode extends ProjectSpecificMethods {
 	public StudentRegistration2classcode verifyemailremembered() {
 		scrollToTheGivenWebElement(getPropfile(gpropname1, "Emailaddresslabel"));
 		String email = propElement(getPropfile(gpropname2, "Emailaddress")).getAttribute("value");
-		if (email.equals(getPropfile("StudentRegistration/email3", "email3"))) {
+		if (email.equals(getPropfile("StudentRegistration/email2", "email2"))) {
 			reportStep("email value " + email + " is remembered ", "Pass");
 		} else {
 			reportStep("email value " + email + " is not remembered ", "Fail");
@@ -189,7 +189,7 @@ public class StudentRegistration2classcode extends ProjectSpecificMethods {
 	public StudentRegistration2classcode verifyemailfieldremembered() {
 		scrollToTheGivenWebElement(getPropfile(gpropname1, "Emailaddresslabel"));
 		String verifyemail = propElement(getPropfile(gpropname2, "VerifyEmailaddress")).getAttribute("value");
-		if (verifyemail.equals(getPropfile("StudentRegistration/email3", "email3"))) {
+		if (verifyemail.equals(getPropfile("StudentRegistration/email2", "email2"))) {
 			reportStep("verify email value " + verifyemail + " is remembered ", "Pass");
 		} else {
 			reportStep("verify email value " + verifyemail + " is not remembered ", "Fail");

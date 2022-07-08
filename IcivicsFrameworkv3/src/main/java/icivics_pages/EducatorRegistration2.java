@@ -19,61 +19,62 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 	public String gpropname = "EducatorRegistration/educatorregistration";
 	public String lpropname = "EducatorRegistration/educatorregistration1";
 	public String propname2 = "EducatorRegistration/educatorregistration2";
+	public String propname3 = "EducatorRegistration/email2";
 
 	public EducatorRegistration2(RemoteWebDriver driver, ExtentTest node, Properties prop) {
 		this.driver = driver;
 		this.node = node;
 		this.prop = prop;
 	}
-	
+
 	@Given("Given Launch the icivis educatorregistration URL")
 	public EducatorRegistration2 launchURL(String URL) {
 		navigateto(URL);
 		return this;
 	}
-	
+
 	public EducatorRegistration2 verifywithvaliddata() throws InterruptedException, IOException {
-		
+
 		WebElement username = propElement(getPropfile(gpropname, "username"));
 		String username1 = username.getText();
 		writePropfile("EducatorRegistration/username", "username", username1);
-		
+
 		WebElement firstname = propElement(getPropfile(gpropname, "firstname"));
 		firstname.clear();
 		firstname.sendKeys(getPropfile(lpropname, "FirstName"));
-		
+
 		WebElement lastname = propElement(getPropfile(gpropname, "Lastname"));
 		lastname.clear();
 		lastname.sendKeys(getPropfile(lpropname, "LastName"));
-		
+
 		String EmailId = getPropfile(lpropname, "EmailID");
-		
+
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L;
 		String[] data = EmailId.split("@");
 		String name = data[0];
 		String host = data[1];
 		String emailId = name + number + "@" + host;
-		
-		writePropfile("EducatorRegistration/email", "email", emailId);
+
+		writePropfile("EducatorRegistration/email2", "email2", emailId);
 		WebElement emailele = propElement(getPropfile(gpropname, "Emailaddress"));
 		clearAndType(emailele, emailId);
-		
+
 		WebElement verifyemail = propElement(getPropfile(gpropname, "VerifyEmailaddress"));
 		verifyemail.clear();
 		verifyemail.sendKeys(emailId);
-		
+
 		WebElement nextbutton = propElement(getPropfile(gpropname, "nextbutton"));
 		scrollToTheGivenWebElement(getPropfile(gpropname, "nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		
+
 		WebElement page2 = propElement(getPropfile(gpropname, "gradelevel"));
-		if(page2.isDisplayed()) {
+		if (page2.isDisplayed()) {
 			reportStep("Page 2 is displayed", "Pass");
-			}else {
-				reportStep("Page 2 is not displayed", "Fail");
-			}
-		
+		} else {
+			reportStep("Page 2 is not displayed", "Fail");
+		}
+
 		return this;
 	}
 
@@ -164,7 +165,7 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 	@And("Verify email is remembered.")
 	public EducatorRegistration2 verifyemailisremembered() throws IOException {
 		String email = propElement(getPropfile(gpropname, "Emailaddress")).getAttribute("value");
-		if (email.equals(getPropfile("EducatorRegistration/email", "email"))) {
+		if (email.equals(getPropfile("EducatorRegistration/email2", "email2"))) {
 			reportStep("email value " + email + " is remembered ", "Pass");
 		} else {
 			reportStep("email value " + email + " is not remembered ", "Fail");
@@ -175,14 +176,13 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 	@And("Verify verifyemail is remembered.")
 	public EducatorRegistration2 verifyemail2isremembered() throws IOException {
 		String verifyemail = propElement(getPropfile(gpropname, "VerifyEmailaddress")).getAttribute("value");
-		if (verifyemail.equals(getPropfile("EducatorRegistration/email", "email"))) {
+		if (verifyemail.equals(getPropfile("EducatorRegistration/email2", "email2"))) {
 			reportStep("verify email value " + verifyemail + " is remembered ", "Pass");
 		} else {
 			reportStep("verify email value " + verifyemail + " is not remembered ", "Fail");
 		}
 		return this;
 	}
-
 
 	@Given("User on Page 2, Verify grade level field and option is displayed as checkbox and nothing is selected as default")
 	public EducatorRegistration2 verifygradelevelfield() throws IOException {
@@ -237,9 +237,13 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 		waitTime(3000);
 		Select sel = new Select(role);
 		if (sel.getFirstSelectedOption().getText().equals("- None -")) {
-			reportStep("verified " + sel.getFirstSelectedOption().getText() + " is selected as default in Role Dropdown","Pass");
+			reportStep(
+					"verified " + sel.getFirstSelectedOption().getText() + " is selected as default in Role Dropdown",
+					"Pass");
 		} else {
-			reportStep("verified " + sel.getFirstSelectedOption().getText() + " is selected as default in Role Dropdown","Fail");
+			reportStep(
+					"verified " + sel.getFirstSelectedOption().getText() + " is selected as default in Role Dropdown",
+					"Fail");
 		}
 		List<WebElement> roleoptions = sel.getOptions();
 		int size = roleoptions.size();
@@ -263,8 +267,8 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 			} else {
 				reportStep("This step failed", "Fail");
 			}
-		}reportStep("Grade level Checkbox allows to select more than one option, all checkbox's are selected",
-				"Pass");
+		}
+		reportStep("Grade level Checkbox allows to select more than one option, all checkbox's are selected", "Pass");
 		return this;
 	}
 
@@ -327,13 +331,12 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 		WebElement DropDown = propElement(getPropfile(propname2, "roledropdown"));
 		selectDropDownUsingIndex(DropDown, 0);
 		click(propElement(getPropfile(propname2, "Nextbutton")));
-		
+
 		WebElement errormsgbox = propElement(getPropfile(propname2, "errormsgbox"));
 		if (errormsgbox.isDisplayed()) {
 			reportStep("Error msg box Is displayed", "Pass");
 			verifyExactText(propElement(getPropfile(propname2, "errormsg1")), "Role is required for teacher.");
-			verifyExactText(propElement(getPropfile(propname2, "errormsg2")),
-					"Levels taught is required for teacher.");
+			verifyExactText(propElement(getPropfile(propname2, "errormsg2")), "Levels taught is required for teacher.");
 		} else {
 			reportStep("Error msg box Is not displayed", "Fail");
 		}
@@ -346,14 +349,13 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 		WebElement DropDown = propElement(getPropfile(propname2, "roledropdown1"));
 		selectDropDownUsingIndex(DropDown, 7);
 		click(propElement(getPropfile(propname2, "Nextbutton")));
-		
+		waitTime(3000);
+
 		WebElement errormsgbox = propElement(getPropfile(propname2, "errormsgbox"));
 		if (errormsgbox.isDisplayed()) {
 			reportStep("Error msg box Is displayed", "Pass");
-			verifyExactText(propElement(getPropfile(propname2, "errormsg1")),
-					"What is your role? field is required.");
-			verifyExactText(propElement(getPropfile(propname2, "errormsg2")),
-					"Levels taught is required for teacher.");
+			verifyExactText(propElement(getPropfile(propname2, "errormsg1")), "What is your role? field is required.");
+			verifyExactText(propElement(getPropfile(propname2, "errormsg2")), "Levels taught is required for teacher.");
 		} else {
 			reportStep("Error msg box Is not displayed", "Fail");
 		}
@@ -381,19 +383,18 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 		String value = getPropfile(propname2, "Checkboxvalue");
 		List<WebElement> chkBox = propElement1(getPropfile(propname2, "checkboxlist1"));
 		int Size = chkBox.size();
-		for (int i = 0; i < Size-1; i++) {
+		for (int i = 0; i < Size - 1; i++) {
 			String val = chkBox.get(i).getAttribute("value");
 			if (val.equalsIgnoreCase(value)) {
-				if(!chkBox.get(i).isSelected())
-				{       
+				if (!chkBox.get(i).isSelected()) {
 					chkBox.get(i).click();
 					reportStep(val + " is selected", "Pass");
 					break;
 				}
-				} 
-				
+			}
+
 		}
-		
+
 		String dropdownvalue = getPropfile(propname2, "Dropdownvalue");
 		WebElement roleDropDown = propElement(getPropfile(propname2, "roledropdown"));
 		selectDropDownUsingValue(roleDropDown, dropdownvalue);
@@ -404,17 +405,17 @@ public class EducatorRegistration2 extends ProjectSpecificMethods {
 		waitTime(3000);
 		return this;
 	}
-	
+
 	@Given("verify page 3 is loaded")
 	public EducatorRegistration2 verifypage3loaded() throws InterruptedException, IOException {
 		waitTime(5000);
-		
+
 		WebElement page2 = propElement(getPropfile(propname2, "schoollabel"));
-		if(page2.isDisplayed()) {
+		if (page2.isDisplayed()) {
 			reportStep("Page 3 is displayed", "Pass");
-			}else {
-				reportStep("Page 3 is not displayed", "Fail");
-			}
+		} else {
+			reportStep("Page 3 is not displayed", "Fail");
+		}
 		return this;
 	}
 }
