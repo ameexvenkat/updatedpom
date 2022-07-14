@@ -6,6 +6,7 @@ import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.ExtentTest;
 
@@ -132,11 +133,12 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 	@Then("Enter the fields with valid data for first page and verify the result")
 	public GoogleSignOn verifyenterfieldwithvaliddataforpage1() {
 
-		List<WebElement> checkbox = driver.findElements(By.xpath("//div[@class='form-checkboxes']/div"));
+		List<WebElement> checkbox = driver.findElements(By.xpath("//div[@class='form-checkboxes']/descendant::input"));
 		int size = checkbox.size();
-		for (int i = 0; i < size; i++) {
+		System.out.println(size);
+		for (int i = 0; i <= size - 1; i++) {
 			String value = checkbox.get(i).getAttribute("value");
-
+			System.out.println(value);
 			if (value.equalsIgnoreCase("Middle School")) {
 				checkbox.get(i).click();
 				waitTime(3000);
@@ -144,10 +146,88 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 			} else {
 				reportStep("Checkbox is not selected ", "Fail");
 			}
+
 		}
+		WebElement dropdownoption = driver
+				.findElement(By.xpath("//select[@class='form-select required form-control']"));
+
+		System.out.println(dropdownoption.getText());
+		waitTime(3000);
+		Select sel = new Select(dropdownoption);
+		if (dropdownoption.isEnabled()) {
+			sel.selectByVisibleText("Teacher");
+			waitTime(3000);
+			reportStep("Teacher Option is selected from dropdown", "Pass");
+		} else {
+
+			reportStep("Option is not selected from dropdown", "Fail");
+		}
+		List<WebElement> alloptions = sel.getOptions();
+		System.out.println(alloptions.size());
+		WebElement nextbutton = driver.findElement(By.xpath("//button[@value='Next']"));
+		if (nextbutton.isDisplayed()) {
+			nextbutton.click();
+			waitTime(5000);
+			reportStep("Page2 is display", "Pass");
+		} else {
+			reportStep("Page2 is not display", "Pass");
+		}
+
 		return this;
 	}
 
+	@Then("Enter the fields with valid data for second page and verify the result")
+	public GoogleSignOn verifyenterfieldwithvaliddataforpage2() {
+		WebElement dropdownoption = driver
+				.findElement(By.xpath("//select[@class='form-select required form-control']"));
+
+		waitTime(3000);
+		Select sel = new Select(dropdownoption);
+		if (dropdownoption.isEnabled()) {
+			sel.selectByVisibleText("Alabama");
+			waitTime(3000);
+			reportStep("Alabama Option is selected from dropdown", "Pass");
+		} else {
+
+			reportStep("Option is not selected from dropdown", "Fail");
+		}
+		List<WebElement> alloptions = sel.getOptions();
+		System.out.println(alloptions.size());
+		WebElement schoolfield = driver
+				.findElement(By.xpath("(//input[@class='js-text-full text-full form-text required form-control'])[1]"));
+		schoolfield.sendKeys("ST.Thomas's");
+		waitTime(3000);
+		WebElement zipcodefield = driver
+				.findElement(By.xpath("(//input[@class='js-text-full text-full form-text required form-control'])[2]"));
+		zipcodefield.sendKeys("11111111");
+		waitTime(3000);
+		WebElement nextbutton = driver.findElement(By.xpath("//button[@value='Next']"));
+		if (nextbutton.isDisplayed()) {
+			nextbutton.click();
+			waitTime(5000);
+			reportStep("Page3 is display", "Pass");
+		} else {
+			reportStep("Page3 is not display", "Pass");
+		}
+		return this;
+	}
+@Then("Enter the fields with valid data for third page and verify the result")
+public GoogleSignOn verifyenterfieldwithvaliddataforpage3()
+{
+	WebElement chkbox=driver.findElement(By.xpath("//input[@id='edit-agreement']"));
+	chkbox.click();
+	WebElement savebutton=driver.findElement(By.xpath("//button[@id='edit-submit']"));
+	if(savebutton.isDisplayed()) {
+		savebutton.click();
+		waitTime(3000);
+		reportStep("Registration is complete for this account and getting started page is display", "Pass");
+	}
+	else
+	{
+		reportStep("Registration is not complete for this account", "Fail");	
+	}
+	return this;	
+}
 	@Given("Enter the credentials as a student verify My iCivics page opens for this account")
 	public GoogleSignOn verifyentercredentailsasStudent() {
 		WebElement signinwithgooglebutton = driver

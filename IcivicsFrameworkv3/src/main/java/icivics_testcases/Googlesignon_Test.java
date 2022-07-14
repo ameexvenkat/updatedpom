@@ -42,7 +42,8 @@ public class Googlesignon_Test extends ProjectSpecificMethods {
 		node = test.createNode("C541 -Select an account that is registered as a teacher #2");
 		extent.attachReporter(spark);
 		new GoogleSignOn(driver, node, prop).launchURL(URL).verifyentercredentails2()
-				.verifyeducatorregistrationpagedisplay().verifyenterfieldwithvaliddataforpage1();
+				.verifyeducatorregistrationpagedisplay().verifyenterfieldwithvaliddataforpage1()
+				.verifyenterfieldwithvaliddataforpage2().verifyenterfieldwithvaliddataforpage3();
 	}
 	// C542 - Select an account that is registered as a student
 

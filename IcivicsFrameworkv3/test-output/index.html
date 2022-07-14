@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\tripti.gupta\AppData\Local\Temp\testng-eclipse-1472954956\testng-customsuite.xml</span>
+                    <span>C:\Users\tripti.gupta\AppData\Local\Temp\testng-eclipse--979638059\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -104,7 +104,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="icivics_testcases.Googlesignon_Test" class="method navigator-link" hash-for-method="C541_verifyentercredentails2(https://staging.d9.icivics.org/user/login)">C541_verifyentercredentails2(https://staging.d9.icivics.org/user/login)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="icivics_testcases.Pg2TeacherRegistration_Test" class="method navigator-link" hash-for-method="C546_Verifypage2fields(https://staging.d9.icivics.org/user/login)">C546_Verifypage2fields(https://staging.d9.icivics.org/user/login)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -122,18 +122,22 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">icivics_testcases.Googlesignon_Test</span>
+              <span class="class-name">icivics_testcases.Pg2TeacherRegistration_Test</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="C541_verifyentercredentails2(https://staging.d9.icivics.org/user/login)">
-                  </a> <!-- C541_verifyentercredentails2(https://staging.d9.icivics.org/user/login) -->
-                  <span class="method-name">C541_verifyentercredentails2</span>
+                  <a name="C546_Verifypage2fields(https://staging.d9.icivics.org/user/login)">
+                  </a> <!-- C546_Verifypage2fields(https://staging.d9.icivics.org/user/login) -->
+                  <span class="method-name">C546_Verifypage2fields</span>
                   <span class="parameters">(https://staging.d9.icivics.org/user/login)</span>
-                  <div class="stack-trace">java.lang.NullPointerException: Cannot invoke &quot;String.equalsIgnoreCase(String)&quot; because &quot;value&quot; is null
-	at icivics_pages.GoogleSignOn.verifyenterfieldwithvaliddataforpage1(GoogleSignOn.java:140)
-	at icivics_testcases.Googlesignon_Test.C541_verifyentercredentails2(Googlesignon_Test.java:45)
+                  <div class="stack-trace">org.openqa.selenium.support.ui.UnexpectedTagNameException: Element should have been &quot;select&quot; but was &quot;option&quot;
+Build info: version: &apos;4.3.0&apos;, revision: &apos;a4995e2c09*&apos;
+System info: host: &apos;AMX-RL-20-457-W&apos;, ip: &apos;10.10.7.42&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.3&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.&lt;init&gt;(Select.java:49)
+	at icivics_pages.Pg2TeacherRegistration.verifyteachingstatefield(Pg2TeacherRegistration.java:115)
+	at icivics_testcases.Pg2TeacherRegistration_Test.C546_Verifypage2fields(Pg2TeacherRegistration_Test.java:38)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -171,7 +175,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\tripti.gupta\AppData\Local\Temp\testng-eclipse-1472954956\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\tripti.gupta\AppData\Local\Temp\testng-eclipse--979638059\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -180,11 +184,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;icivics_testcases.Googlesignon_Test&quot;&gt;
+      &lt;class name=&quot;icivics_testcases.Pg2TeacherRegistration_Test&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;C541_verifyentercredentails2&quot;/&gt;
+          &lt;include name=&quot;C546_Verifypage2fields&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- icivics_testcases.Googlesignon_Test --&gt;
+      &lt;/class&gt; &lt;!-- icivics_testcases.Pg2TeacherRegistration_Test --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -226,14 +230,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'C541_verifyentercredentails2')
-data.setCell(0, 2, 'icivics_testcases.Googlesignon_Test')
-data.setCell(0, 3, 27109);
+data.setCell(0, 1, 'C546_Verifypage2fields')
+data.setCell(0, 2, 'icivics_testcases.Pg2TeacherRegistration_Test')
+data.setCell(0, 3, 53118);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 27 seconds</span>
+              <span class="suite-total-time">Total running time: 53 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -248,19 +252,15 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">4 ignored methods</span>
+            <span class="header-content">2 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">icivics_testcases.Googlesignon_Test</span>
+              <span class="ignored-class-name">icivics_testcases.Pg2TeacherRegistration_Test</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">C540_verifyentercredentails</span>
-                <br/>
-                <span class="ignored-method-name">C542_verifyentercredentailsasstudent</span>
+                <span class="ignored-method-name">C545_VerifyTeacherregistrationpage1</span>
                 <br/>
                 <span class="ignored-method-name">runScenario</span>
-                <br/>
-                <span class="ignored-method-name">C539_Verifygooglesiginpage</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -272,44 +272,44 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">icivics_testcases.Googlesignon_Test</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">icivics_testcases.Pg2TeacherRegistration_Test</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">startReport</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-test before">
                 <span class="method-name">setValues</span>
-                <span class="method-start">480 ms</span>
+                <span class="method-start">466 ms</span>
               </div> <!-- configuration-test before -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@5ce3409b)</span>
-                <span class="method-start">503 ms</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@749baa0c)</span>
+                <span class="method-start">484 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
                 <span class="method-name">report</span>
-                <span class="method-start">978 ms</span>
+                <span class="method-start">734 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">2180 ms</span>
+                <span class="method-start">2005 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">C541_verifyentercredentails2(https://staging.d9.icivics.org/user/login)</span>
-                <span class="method-start">5618 ms</span>
+                <span class="method-name">C546_Verifypage2fields(https://staging.d9.icivics.org/user/login)</span>
+                <span class="method-start">5578 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">32733 ms</span>
+                <span class="method-start">58721 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">33436 ms</span>
+                <span class="method-start">59737 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-suite after">
                 <span class="method-name">stopReport</span>
-                <span class="method-start">33513 ms</span>
+                <span class="method-start">59796 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
