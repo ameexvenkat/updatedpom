@@ -14,10 +14,8 @@ Then Enter the fields with valid data for first page and verify the result
 Then Enter the fields with valid data for second page and verify the result 
 Then Enter the fields with valid data for third page and verify the result
 
-
-
 Scenario: C542 -Select an account that is registered as a student
 Given  Enter the credentials as a student verify My iCivics page opens for this account
 
 Scenario: C543 -Select an account that is not registered on iCivics
-Given Enter the credentials not registered and verify My iCivics page opens for this account
+Given Enter the credentials not registered before and verify My iCivics page opens for this account

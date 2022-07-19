@@ -33,26 +33,22 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@And("Verify Dialog opens in same window with Google accounts that are available")
 	public GoogleSignOn verifygoogleaccount() {
+
 		WebElement signinwithgooglebutton = driver
 				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
-
+		String parentWindow = driver.getWindowHandle();
 		if (signinwithgooglebutton.isDisplayed()) {
-			signinwithgooglebutton.click();
+			click(signinwithgooglebutton);
 			waitTime(3000);
-			switchToWindow("Sign in – Google accounts");
-			System.out.println(driver.getTitle());
-			String window = driver.getTitle();
-			reportStep("Google sign in page is displayed -" + driver.getTitle(), "Pass");
-			switchToWindow("User Profile | iCivics");
-			if (window.contains("Sign in – Google accounts")) {
+			String currentWindow = driver.getWindowHandle();
 
-				reportStep("Google signin Page open in the same tab", "Pass");
-				driver.navigate().back();
-				reportStep("Page is displaying the default content after clicking back button in same tab", "Pass");
-				System.out.println(driver.getTitle());
+			if (parentWindow.equals(currentWindow)) {
 
-			} else {
-				reportStep("Page is displaying  in new tab", "Fail");
+				reportStep("New window has not been opened.", "Pass");
+			}
+
+			else {
+				reportStep("New window has been opened.", "Fail");
 			}
 		}
 		return this;
@@ -211,23 +207,22 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 		}
 		return this;
 	}
-@Then("Enter the fields with valid data for third page and verify the result")
-public GoogleSignOn verifyenterfieldwithvaliddataforpage3()
-{
-	WebElement chkbox=driver.findElement(By.xpath("//input[@id='edit-agreement']"));
-	chkbox.click();
-	WebElement savebutton=driver.findElement(By.xpath("//button[@id='edit-submit']"));
-	if(savebutton.isDisplayed()) {
-		savebutton.click();
-		waitTime(3000);
-		reportStep("Registration is complete for this account and getting started page is display", "Pass");
+
+	@Then("Enter the fields with valid data for third page and verify the result")
+	public GoogleSignOn verifyenterfieldwithvaliddataforpage3() {
+		WebElement chkbox = driver.findElement(By.xpath("//input[@id='edit-agreement']"));
+		chkbox.click();
+		WebElement savebutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+		if (savebutton.isDisplayed()) {
+			savebutton.click();
+			waitTime(3000);
+			reportStep("Registration is complete for this account and getting started page is display", "Pass");
+		} else {
+			reportStep("Registration is not complete for this account", "Fail");
+		}
+		return this;
 	}
-	else
-	{
-		reportStep("Registration is not complete for this account", "Fail");	
-	}
-	return this;	
-}
+
 	@Given("Enter the credentials as a student verify My iCivics page opens for this account")
 	public GoogleSignOn verifyentercredentailsasStudent() {
 		WebElement signinwithgooglebutton = driver
@@ -282,5 +277,53 @@ public GoogleSignOn verifyenterfieldwithvaliddataforpage3()
 			reportStep("My Icivics page not open for this account", "Fail");
 		}
 		return this;
+	}
+
+	@Given("Enter the credentials not registered before and verify My iCivics page opens for this account")
+	public GoogleSignOn verifynotregisteredaccountforstudent() {
+		WebElement signinwithgooglebutton = driver
+				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		signinwithgooglebutton.click();
+		waitTime(3000);
+		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		waitTime(3000);
+		emailfield.sendKeys("amatt.teacher30@gedu.demo.icivics.org");
+
+		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		nextbutton.click();
+		waitTime(3000);
+		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+
+		pwdfield.sendKeys("Freedom17@");
+		waitTime(3000);
+		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		if (nextbutton1.isDisplayed()) {
+			nextbutton1.click();
+			waitTime(3000);
+			reportStep("Classroom/register page display", "Pass");
+		} else {
+			reportStep("Classroom/register page not display", "Fail");
+		}
+		WebElement registerasstudentbutton = driver.findElement(By.xpath("//h4[text()='Register as a Student!']"));
+		registerasstudentbutton.click();
+		waitTime(3000);
+		WebElement agreetoterrms = driver.findElement(By.xpath("//label[@class='control-label option']/input"));
+		if (agreetoterrms.isDisplayed()) {
+			agreetoterrms.click();
+			reportStep("Checkbox is checked", "Pass");
+		} else {
+			reportStep("Checkbox is not checked", "Fail");
+		}
+		WebElement finishbutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+		if (finishbutton.isDisplayed()) {
+			finishbutton.click();
+			waitTime(3000);
+			reportStep("Gettingstarted page opens", "Pass");
+		} else {
+			reportStep("Gettingstarted page do not opens", "Fail");
+		}
+
+		return this;
+
 	}
 }

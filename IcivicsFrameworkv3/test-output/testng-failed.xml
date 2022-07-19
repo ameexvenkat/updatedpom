@@ -6,7 +6,7 @@
       <class name="icivics_testcases.Pg2TeacherRegistration_Test">
         <methods>
           <include name="setUpClass"/>
-          <include name="C546_Verifypage2fields" invocation-numbers="0"/>
+          <include name="C546_Verifybackbutton" invocation-numbers="0"/>
           <include name="afterMethod"/>
           <include name="tearDownClass"/>
           <include name="stopReport"/>

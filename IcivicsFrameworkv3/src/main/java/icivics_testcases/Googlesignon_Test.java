@@ -29,7 +29,7 @@ public class Googlesignon_Test extends ProjectSpecificMethods {
 	}
 	// C540 - Select an account that is registered as a teacher #1
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 1)
 	public void C540_verifyentercredentails(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C540 -Select an account that is registered as a teacher #1");
 		extent.attachReporter(spark);
@@ -37,7 +37,7 @@ public class Googlesignon_Test extends ProjectSpecificMethods {
 	}
 	// C541 - Select an account that is registered as a teacher #2
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 2)
 	public void C541_verifyentercredentails2(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C541 -Select an account that is registered as a teacher #2");
 		extent.attachReporter(spark);
@@ -47,10 +47,18 @@ public class Googlesignon_Test extends ProjectSpecificMethods {
 	}
 	// C542 - Select an account that is registered as a student
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 3)
 	public void C542_verifyentercredentailsasstudent(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C542 -Select an account that is registered as a student");
 		extent.attachReporter(spark);
 		new GoogleSignOn(driver, node, prop).launchURL(URL).verifyentercredentailsasStudent();
+	}
+	// C543 - Select an account that is not registered on iCivics
+
+	@Test(dataProvider = "fetchData", priority = 4)
+	public void C543_verifynotregisteredaccountforstudent(String URL) throws IOException, InterruptedException {
+		node = test.createNode("C542 -Select an account that is registered as a student");
+		extent.attachReporter(spark);
+		new GoogleSignOn(driver, node, prop).launchURL(URL).verifynotregisteredaccountforstudent();
 	}
 }
