@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import icivics_pages.Pg2TeacherRegistration;
+
 import icivics_pages.Pg3TeacherRegistration;
 import projectSpecific.base.ProjectSpecificMethods;
 

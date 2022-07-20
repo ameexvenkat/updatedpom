@@ -31,7 +31,7 @@ public class Pg2TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C546 - "Do you see fields for teaching state, school or institution, and zip
 	// code?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 1)
 	public void C546_Verifypage2fields(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C5456- Do you see fields for teaching state, school or institution, and zip code?");
 		extent.attachReporter(spark);
@@ -39,7 +39,7 @@ public class Pg2TeacherRegistration_Test extends ProjectSpecificMethods {
 	}
 	// C546 - "Can you select Back to proceed to the previous page?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 2)
 	public void C546_Verifybackbutton(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C5456- Can you select Back to proceed to the previous page?");
 		extent.attachReporter(spark);
@@ -48,7 +48,7 @@ public class Pg2TeacherRegistration_Test extends ProjectSpecificMethods {
 
 // C547 - "Can you make a selection for all fields?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 3)
 	public void C547_Verifyfieldselection(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C5457- Can you make a selection for all fields?");
 		extent.attachReporter(spark);
@@ -58,7 +58,7 @@ public class Pg2TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C548 - "If you enter invalid information in a required field and select Next,
 	// do you receive an appropriate error message?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 4)
 	public void C548_Verifyfieldswithinvaliddata(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C5458- If you enter invalid information in a required field and select Next, do you receive an appropriate error message?");
@@ -68,7 +68,7 @@ public class Pg2TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C549 - "If you leave a required field blank and select Next, do you receive
 	// an appropriate error message?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 5)
 	public void C549_Verifyfieldswithinvaliddata(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C5459- If you leave a required field blank and select Next, do you receive an appropriate error message?");
@@ -79,7 +79,7 @@ public class Pg2TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C550 - "If you fill out all required fields with valid information and select
 	// Next, are you taken to Page 3?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 6)
 	public void C550_Verifyfieldswithinvaliddata(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C550- If you fill out all required fields with valid information and select Next, are you taken to Page 3?");

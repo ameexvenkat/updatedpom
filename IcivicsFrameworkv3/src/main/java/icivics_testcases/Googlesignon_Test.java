@@ -57,7 +57,7 @@ public class Googlesignon_Test extends ProjectSpecificMethods {
 
 	@Test(dataProvider = "fetchData", priority = 4)
 	public void C543_verifynotregisteredaccountforstudent(String URL) throws IOException, InterruptedException {
-		node = test.createNode("C542 -Select an account that is registered as a student");
+		node = test.createNode("C543 -Select an account that is not registered on iCivics");
 		extent.attachReporter(spark);
 		new GoogleSignOn(driver, node, prop).launchURL(URL).verifynotregisteredaccountforstudent();
 	}

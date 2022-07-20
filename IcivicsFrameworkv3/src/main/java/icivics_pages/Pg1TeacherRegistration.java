@@ -18,9 +18,8 @@ import cucumber.api.java.en.When;
 import projectSpecific.base.ProjectSpecificMethods;
 
 public class Pg1TeacherRegistration extends ProjectSpecificMethods {
-	public String gpropname1 = "Homepage/homepageheader";
-	public String gpropname2 = "Homepage/homepageheader";
-
+	public String gpropname1 = "GoogleIntegration/GoogleSignOn";
+	public String gpropname2 = "GoogleIntegration/GoogleRegistration";
 	public String gpropname3 = "GoogleIntegration/Page1TeacherRegistration";
 
 	public Pg1TeacherRegistration(RemoteWebDriver driver, ExtentTest node, Properties prop) {
@@ -37,22 +36,21 @@ public class Pg1TeacherRegistration extends ProjectSpecificMethods {
 	}
 
 	public Pg1TeacherRegistration Registrationpage() {
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
 		signinwithgooglebutton.click();
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher26@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -60,8 +58,7 @@ public class Pg1TeacherRegistration extends ProjectSpecificMethods {
 		} else {
 			reportStep("Registration page not display", "Fail");
 		}
-		WebElement registeraseducatorbutton = driver
-				.findElement(By.xpath("//h4[text()='Register as an Educator or a Parent!']"));
+		WebElement registeraseducatorbutton = propElement(getPropfile(gpropname1, "RegisterasEducator"));
 		registeraseducatorbutton.click();
 		waitTime(3000);
 		return this;

@@ -13,8 +13,9 @@ import cucumber.api.java.en.Then;
 import projectSpecific.base.ProjectSpecificMethods;
 
 public class GoogleRegistration extends ProjectSpecificMethods {
-	public String gpropname1 = "Homepage/homepageheader";
-
+	public String gpropname1 = "GoogleIntegration/GoogleSignOn";
+	public String gpropname2 = "GoogleIntegration/GoogleRegistration";
+	
 	public GoogleRegistration(RemoteWebDriver driver, ExtentTest node, Properties prop) {
 		this.driver = driver;
 		this.node = node;
@@ -32,22 +33,21 @@ public class GoogleRegistration extends ProjectSpecificMethods {
 	public GoogleRegistration verifyclickregisteraseducator() {
 
 		navigateto("https://staging.d9.icivics.org/user/login");
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
 		signinwithgooglebutton.click();
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher26@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -55,13 +55,14 @@ public class GoogleRegistration extends ProjectSpecificMethods {
 		} else {
 			reportStep("Registration page not display", "Fail");
 		}
-		WebElement registeraseducatorbutton = driver
-				.findElement(By.xpath("//h4[text()='Register as an Educator or a Parent!']"));
+		WebElement registeraseducatorbutton = propElement(getPropfile(gpropname1, "RegisterasEducator"));
+		waitTime(3000);
 		registeraseducatorbutton.click();
-		WebElement header = driver.findElement(By.xpath("//h2[@class='reg-header']"));
+		String text=(getPropfile(gpropname2, "Headervalue"));
+		WebElement header = propElement(getPropfile(gpropname2, "Header"));
 		String headertext = header.getText();
 		System.out.println(headertext);
-		if (headertext.contains("Educator / Parent Registration")) {
+		if (headertext.contains(text)) {
 			reportStep("Teacher registration page 1 display ", "Pass");
 		} else {
 			reportStep("Teacher registration page 1 not display ", "Fail");
@@ -71,7 +72,7 @@ public class GoogleRegistration extends ProjectSpecificMethods {
 	@Given("Start Registration without being signed in with google and verify the error message")
 	public GoogleRegistration verifyregistrationwithoutsignin() {
 		
-		WebElement errormsg=driver.findElement(By.xpath("//div[@class='alert alert-danger alert-dismissible']/p"));
+		WebElement errormsg=propElement(getPropfile(gpropname2, "Errormsg"));
 		String msg=errormsg.getText();
 		System.out.println(msg);
 		verifyText(errormsg, "Google Classroom token was not set correctly.");
@@ -81,22 +82,20 @@ public class GoogleRegistration extends ProjectSpecificMethods {
 	@Given("Start registration with already registered Id and verify the error message")
 	public GoogleRegistration verifyregistrationwithalreadyregisteredID() {
 		navigateto("https://staging.d9.icivics.org/user/login");
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
 		signinwithgooglebutton.click();
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher24@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
-
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -105,29 +104,28 @@ public class GoogleRegistration extends ProjectSpecificMethods {
 			reportStep("Registration page not display", "Fail");
 		}
 		navigateto("https://staging.d9.icivics.org/classroom/register");
-		WebElement errormsg =driver.findElement(By.xpath("//h2[@class='block-title']"));
+		WebElement errormsg =propElement(getPropfile(gpropname2, "Errormsg1"));
 		verifyText(errormsg, "Sorry but you do not have permission to view this page");
 		return this;
 	}
 	@Given("Enter credentials not registered before and select register as Student")
 	public GoogleRegistration verifyregisterasstudentclick() {
 		navigateto("https://staging.d9.icivics.org/user/login");
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
 		signinwithgooglebutton.click();
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher30@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -135,9 +133,18 @@ public class GoogleRegistration extends ProjectSpecificMethods {
 		} else {
 			reportStep("Registration page not display", "Fail");
 		}
-		WebElement registeraseducatorbutton = driver
-				.findElement(By.xpath("//h4[text()='Register as a Student!']"));
-		registeraseducatorbutton.click();
+		WebElement registerasstudentbutton = propElement(getPropfile(gpropname1, "RegisterasStudent"));
+		click(registerasstudentbutton);
+		waitTime(3000);
+		WebElement studentpage = propElement(getPropfile(gpropname2, "Studentpage"));
+		if(studentpage.isDisplayed()) {
+		verifyText(studentpage, "Your registration is almost complete.");
+		reportStep("Student page is display", "Pass");
+		}
+		else
+		{
+			reportStep("Student page is not display", "Fail");
+		}
 		return this;
 	}
 }

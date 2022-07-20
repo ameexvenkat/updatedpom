@@ -3,7 +3,6 @@ package icivics_pages;
 import java.util.List;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -16,7 +15,7 @@ import cucumber.api.java.en.Then;
 import projectSpecific.base.ProjectSpecificMethods;
 
 public class GoogleSignOn extends ProjectSpecificMethods {
-	public String gpropname1 = "Homepage/homepageheader";
+	public String gpropname1 = "GoogleIntegration/GoogleSignOn";
 
 	public GoogleSignOn(RemoteWebDriver driver, ExtentTest node, Properties prop) {
 		this.driver = driver;
@@ -34,9 +33,9 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 	@And("Verify Dialog opens in same window with Google accounts that are available")
 	public GoogleSignOn verifygoogleaccount() {
 
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
 		String parentWindow = driver.getWindowHandle();
+
 		if (signinwithgooglebutton.isDisplayed()) {
 			click(signinwithgooglebutton);
 			waitTime(3000);
@@ -44,7 +43,7 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 			if (parentWindow.equals(currentWindow)) {
 
-				reportStep("New window has not been opened.", "Pass");
+				reportStep("Dialog opens in same window", "Pass");
 			}
 
 			else {
@@ -57,22 +56,23 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 	@Given("Enter the credentials verify My iCivics page opens for this account")
 
 	public GoogleSignOn verifyentercredentails() {
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
-		signinwithgooglebutton.click();
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
+
+		click(signinwithgooglebutton);
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher24@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(5000);
@@ -86,22 +86,22 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Given("Enter the credentials verify register page open")
 	public GoogleSignOn verifyentercredentails2() {
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
-		signinwithgooglebutton.click();
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
+
+		click(signinwithgooglebutton);
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher26@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -114,8 +114,7 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Then("Verify on clicking register as educator redirect to educator registration page")
 	public GoogleSignOn verifyeducatorregistrationpagedisplay() {
-		WebElement registeraseducatorbutton = driver
-				.findElement(By.xpath("//h4[text()='Register as an Educator or a Parent!']"));
+		WebElement registeraseducatorbutton = propElement(getPropfile(gpropname1, "RegisterasEducator"));
 		if (registeraseducatorbutton.isDisplayed()) {
 			registeraseducatorbutton.click();
 			reportStep("Educator registration page display", "Pass");
@@ -128,24 +127,29 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Then("Enter the fields with valid data for first page and verify the result")
 	public GoogleSignOn verifyenterfieldwithvaliddataforpage1() {
+		String value = getPropfile(gpropname1, "Checkboxvalue");
+		List<WebElement> checkbox = propElement1(getPropfile(gpropname1, "Checkboxlist"));
+		int Size = checkbox.size();
 
-		List<WebElement> checkbox = driver.findElements(By.xpath("//div[@class='form-checkboxes']/descendant::input"));
-		int size = checkbox.size();
-		System.out.println(size);
-		for (int i = 0; i <= size - 1; i++) {
-			String value = checkbox.get(i).getAttribute("value");
-			System.out.println(value);
-			if (value.equalsIgnoreCase("Middle School")) {
-				checkbox.get(i).click();
+		for (int i = 0; i < Size; i++) {
+			String val = checkbox.get(i).getAttribute("value");
+			if (val.equalsIgnoreCase(value)) {
 				waitTime(3000);
-				reportStep("Checkbox is selected", "Pass");
-			} else {
-				reportStep("Checkbox is not selected ", "Fail");
+				if (!checkbox.get(i).isSelected()) {
+					waitTime(3000);
+					checkbox.get(i).click();
+					reportStep(val + " is selected", "Pass");
+					break;
+				}
+			}
+			
+				else {
+					reportStep(val + " is not selected", "Pass");
+				}
 			}
 
-		}
-		WebElement dropdownoption = driver
-				.findElement(By.xpath("//select[@class='form-select required form-control']"));
+		
+		WebElement dropdownoption = propElement(getPropfile(gpropname1, "Roledropdown"));
 
 		System.out.println(dropdownoption.getText());
 		waitTime(3000);
@@ -160,7 +164,8 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 		}
 		List<WebElement> alloptions = sel.getOptions();
 		System.out.println(alloptions.size());
-		WebElement nextbutton = driver.findElement(By.xpath("//button[@value='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton1"));
+		waitTime(3000);
 		if (nextbutton.isDisplayed()) {
 			nextbutton.click();
 			waitTime(5000);
@@ -174,9 +179,7 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Then("Enter the fields with valid data for second page and verify the result")
 	public GoogleSignOn verifyenterfieldwithvaliddataforpage2() {
-		WebElement dropdownoption = driver
-				.findElement(By.xpath("//select[@class='form-select required form-control']"));
-
+		WebElement dropdownoption = propElement(getPropfile(gpropname1, "Roledropdown"));
 		waitTime(3000);
 		Select sel = new Select(dropdownoption);
 		if (dropdownoption.isEnabled()) {
@@ -189,15 +192,15 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 		}
 		List<WebElement> alloptions = sel.getOptions();
 		System.out.println(alloptions.size());
-		WebElement schoolfield = driver
-				.findElement(By.xpath("(//input[@class='js-text-full text-full form-text required form-control'])[1]"));
-		schoolfield.sendKeys("ST.Thomas's");
+		String Schoolvalue="St.Thomas's";
+		WebElement schoolfield = propElement(getPropfile(gpropname1, "School"));
+		clearAndType(schoolfield, Schoolvalue);
 		waitTime(3000);
-		WebElement zipcodefield = driver
-				.findElement(By.xpath("(//input[@class='js-text-full text-full form-text required form-control'])[2]"));
-		zipcodefield.sendKeys("11111111");
+		String  zipcodevalue="111111111";
+		WebElement zipcodefield = propElement(getPropfile(gpropname1, "Zipcode"));
+		clearAndType(zipcodefield, zipcodevalue);
 		waitTime(3000);
-		WebElement nextbutton = driver.findElement(By.xpath("//button[@value='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton1"));
 		if (nextbutton.isDisplayed()) {
 			nextbutton.click();
 			waitTime(5000);
@@ -210,9 +213,9 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Then("Enter the fields with valid data for third page and verify the result")
 	public GoogleSignOn verifyenterfieldwithvaliddataforpage3() {
-		WebElement chkbox = driver.findElement(By.xpath("//input[@id='edit-agreement']"));
+		WebElement chkbox = propElement(getPropfile(gpropname1, "Agreetotermschkbox"));
 		chkbox.click();
-		WebElement savebutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+		WebElement savebutton = propElement(getPropfile(gpropname1, "Savebutton"));
 		if (savebutton.isDisplayed()) {
 			savebutton.click();
 			waitTime(3000);
@@ -225,22 +228,22 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Given("Enter the credentials as a student verify My iCivics page opens for this account")
 	public GoogleSignOn verifyentercredentailsasStudent() {
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
-		signinwithgooglebutton.click();
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
+
+		click(signinwithgooglebutton);
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.student1@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -253,22 +256,21 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Given("Enter the credentials not registered and verify My iCivics page opens for this account")
 	public GoogleSignOn verifycredentialsnotregistered() {
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
-		signinwithgooglebutton.click();
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
+		click(signinwithgooglebutton);
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.student1@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -281,22 +283,21 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 
 	@Given("Enter the credentials not registered before and verify My iCivics page opens for this account")
 	public GoogleSignOn verifynotregisteredaccountforstudent() {
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
-		signinwithgooglebutton.click();
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
+		click(signinwithgooglebutton);
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher30@gedu.demo.icivics.org");
 
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		if (nextbutton1.isDisplayed()) {
 			nextbutton1.click();
 			waitTime(3000);
@@ -304,17 +305,17 @@ public class GoogleSignOn extends ProjectSpecificMethods {
 		} else {
 			reportStep("Classroom/register page not display", "Fail");
 		}
-		WebElement registerasstudentbutton = driver.findElement(By.xpath("//h4[text()='Register as a Student!']"));
-		registerasstudentbutton.click();
+		WebElement registerasstudentbutton = propElement(getPropfile(gpropname1, "RegisterasStudent"));
+		click(registerasstudentbutton);
 		waitTime(3000);
-		WebElement agreetoterrms = driver.findElement(By.xpath("//label[@class='control-label option']/input"));
+		WebElement agreetoterrms = propElement(getPropfile(gpropname1, "Studentagreetoterms"));
 		if (agreetoterrms.isDisplayed()) {
 			agreetoterrms.click();
 			reportStep("Checkbox is checked", "Pass");
 		} else {
 			reportStep("Checkbox is not checked", "Fail");
 		}
-		WebElement finishbutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+		WebElement finishbutton = propElement(getPropfile(gpropname1, "Finishbutton"));
 		if (finishbutton.isDisplayed()) {
 			finishbutton.click();
 			waitTime(3000);

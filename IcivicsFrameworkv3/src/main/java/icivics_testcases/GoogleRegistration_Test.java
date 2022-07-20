@@ -50,7 +50,7 @@ public class GoogleRegistration_Test extends ProjectSpecificMethods {
 	// C544 - ""After Google sign-in with account not registered at iCivics
 	//Select student registration"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 3)
 	public void C544_Verifystudentregistrationpage1(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C544 - After Google sign-in with account not registered at iCivics Select student registration");
