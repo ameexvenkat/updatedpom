@@ -1,100 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="7" total="8" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-07-20T22:05:11 IST" name="Default suite" finished-at="2022-07-20T22:11:52 IST" duration-ms="401062">
+  <suite started-at="2022-07-21T22:06:29 IST" name="Default suite" finished-at="2022-07-21T22:07:57 IST" duration-ms="88412">
     <groups>
-      <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
-      </group> <!-- cucumber -->
     </groups>
-    <test started-at="2022-07-20T22:05:11 IST" name="Default test" finished-at="2022-07-20T22:11:52 IST" duration-ms="401062">
+    <test started-at="2022-07-21T22:06:29 IST" name="Default test" finished-at="2022-07-21T22:07:57 IST" duration-ms="88412">
       <class name="icivics_testcases.Pg2TeacherRegistration_Test">
-        <test-method is-config="true" signature="startReport()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:05:10 IST" name="startReport" finished-at="2022-07-20T22:05:11 IST" duration-ms="544" status="PASS">
+        <test-method is-config="true" signature="startReport()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:06:28 IST" name="startReport" finished-at="2022-07-21T22:06:29 IST" duration-ms="354" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReport -->
-        <test-method is-config="true" signature="setValues()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:05:11 IST" name="setValues" finished-at="2022-07-20T22:05:11 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="setValues()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:06:29 IST" name="setValues" finished-at="2022-07-21T22:06:29 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setValues -->
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:05:11 IST" name="setUpClass" finished-at="2022-07-20T22:05:11 IST" duration-ms="291" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:06:29 IST" name="setUpClass" finished-at="2022-07-21T22:06:29 IST" duration-ms="185" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@52b30dcd]]>
+                <![CDATA[org.testng.TestRunner@2b395581]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="report()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:05:11 IST" name="report" finished-at="2022-07-20T22:05:11 IST" duration-ms="14" status="PASS">
+        <test-method is-config="true" signature="report()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:06:29 IST" name="report" finished-at="2022-07-21T22:06:29 IST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- report -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:05:12 IST" name="beforeMethod" finished-at="2022-07-20T22:05:17 IST" duration-ms="4848" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:06:30 IST" name="beforeMethod" finished-at="2022-07-21T22:06:33 IST" duration-ms="2924" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="C545_VerifyTeacherregistrationpage1(java.lang.String)[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:05:17 IST" name="C545_VerifyTeacherregistrationpage1" data-provider="fetchData" finished-at="2022-07-20T22:06:05 IST" duration-ms="48335" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://staging.d9.icivics.org/user/login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C545_VerifyTeacherregistrationpage1 -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:06:05 IST" name="afterMethod" finished-at="2022-07-20T22:06:06 IST" duration-ms="493" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:06:06 IST" name="beforeMethod" finished-at="2022-07-20T22:06:08 IST" duration-ms="2065" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="C546_Verifypage2fields(java.lang.String)[pri:1, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:06:08 IST" name="C546_Verifypage2fields" data-provider="fetchData" finished-at="2022-07-20T22:07:06 IST" duration-ms="57958" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://staging.d9.icivics.org/user/login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C546_Verifypage2fields -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:07:06 IST" name="afterMethod" finished-at="2022-07-20T22:07:06 IST" duration-ms="363" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:07:06 IST" name="beforeMethod" finished-at="2022-07-20T22:07:08 IST" duration-ms="1081" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="C546_Verifybackbutton(java.lang.String)[pri:2, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:07:08 IST" name="C546_Verifybackbutton" data-provider="fetchData" finished-at="2022-07-20T22:08:04 IST" duration-ms="56284" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://staging.d9.icivics.org/user/login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C546_Verifybackbutton -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:08:04 IST" name="afterMethod" finished-at="2022-07-20T22:08:04 IST" duration-ms="315" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:08:04 IST" name="beforeMethod" finished-at="2022-07-20T22:08:05 IST" duration-ms="1205" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="C547_Verifyfieldselection(java.lang.String)[pri:3, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:08:05 IST" name="C547_Verifyfieldselection" data-provider="fetchData" finished-at="2022-07-20T22:09:08 IST" duration-ms="62307" status="PASS">
+        <test-method signature="C547_Verifyfieldselection(java.lang.String)[pri:3, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:06:33 IST" name="C547_Verifyfieldselection" data-provider="fetchData" finished-at="2022-07-21T22:07:57 IST" duration-ms="83760" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -105,72 +45,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- C547_Verifyfieldselection -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:09:08 IST" name="afterMethod" finished-at="2022-07-20T22:09:08 IST" duration-ms="316" status="PASS">
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:07:57 IST" name="afterMethod" finished-at="2022-07-21T22:07:57 IST" duration-ms="619" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:09:08 IST" name="beforeMethod" finished-at="2022-07-20T22:09:09 IST" duration-ms="1222" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="C548_Verifyfieldswithinvaliddata(java.lang.String)[pri:4, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:09:09 IST" name="C548_Verifyfieldswithinvaliddata" data-provider="fetchData" finished-at="2022-07-20T22:10:03 IST" duration-ms="54107" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://staging.d9.icivics.org/user/login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C548_Verifyfieldswithinvaliddata -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:10:03 IST" name="afterMethod" finished-at="2022-07-20T22:10:04 IST" duration-ms="326" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:10:04 IST" name="beforeMethod" finished-at="2022-07-20T22:10:05 IST" duration-ms="1033" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="C549_Verifyfieldswithinvaliddata(java.lang.String)[pri:5, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:10:05 IST" name="C549_Verifyfieldswithinvaliddata" data-provider="fetchData" finished-at="2022-07-20T22:10:55 IST" duration-ms="50150" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://staging.d9.icivics.org/user/login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C549_Verifyfieldswithinvaliddata -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:10:55 IST" name="afterMethod" finished-at="2022-07-20T22:10:55 IST" duration-ms="358" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:10:55 IST" name="beforeMethod" finished-at="2022-07-20T22:10:57 IST" duration-ms="1136" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="C550_Verifyfieldswithinvaliddata(java.lang.String)[pri:6, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:10:57 IST" name="C550_Verifyfieldswithinvaliddata" data-provider="fetchData" finished-at="2022-07-20T22:11:51 IST" duration-ms="54911" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[https://staging.d9.icivics.org/user/login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C550_Verifyfieldswithinvaliddata -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:11:51 IST" name="afterMethod" finished-at="2022-07-20T22:11:52 IST" duration-ms="369" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:11:52 IST" name="tearDownClass" finished-at="2022-07-20T22:11:52 IST" duration-ms="9" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:07:57 IST" name="tearDownClass" finished-at="2022-07-21T22:07:57 IST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="stopReport()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@536f2a7e]" started-at="2022-07-20T22:11:52 IST" name="stopReport" finished-at="2022-07-20T22:11:53 IST" duration-ms="674" status="PASS">
+        <test-method is-config="true" signature="stopReport()[pri:0, instance:icivics_testcases.Pg2TeacherRegistration_Test@5a59ca5e]" started-at="2022-07-21T22:07:57 IST" name="stopReport" finished-at="2022-07-21T22:07:58 IST" duration-ms="540" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- stopReport -->

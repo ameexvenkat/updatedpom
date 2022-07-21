@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.ExtentTest;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import projectSpecific.base.ProjectSpecificMethods;
@@ -186,6 +187,48 @@ public class Pg2TeacherRegistration extends ProjectSpecificMethods {
 	}
 
 	@Then("Make seletion for zipcode and verify the result")
+
+	public Pg2TeacherRegistration Verifyzipcodeerrormsg() {
+		String Zipcode5 = getPropfile(gpropname4, "Zipcode5");
+		String Zipcode9 = getPropfile(gpropname4, "Zipcode9");
+		String Zipcode11 = getPropfile(gpropname4, "Zipcode11");
+		WebElement Zipcodefield = propElement(getPropfile(gpropname4, "Zipcode"));
+		clearAndType(Zipcodefield, Zipcode5);
+		reportStep("Zipcode text box allows to enter 5 digit " + Zipcode9, "Pass");
+		WebElement nextbutton=propElement(getPropfile(gpropname3, "Nextbutton"));
+		click(nextbutton);
+		waitTime(3000);
+		WebElement Checkbox1 = propElement(getPropfile(gpropname4, "Checkbox1"));
+		if (Checkbox1.isDisplayed()) {
+			reportStep(Checkbox1.getText() + "is checked", "Pass");
+		} else {
+			reportStep("Checkbox is not checked", "Fail");
+		}
+		
+		click(propElement(getPropfile(gpropname4, "Backbutton")));
+		waitTime(3000);
+		WebElement Zipcodefield1 = propElement(getPropfile(gpropname4, "Zipcode"));
+		clearAndType(Zipcodefield1, Zipcode9);
+		reportStep("Zipcode text box allows to enter 9 digit " + Zipcode9, "Pass");
+		propElement(getPropfile(gpropname3, "Nextbutton")).click();
+		waitTime(5000);
+		WebElement Checkbox2 = propElement(getPropfile(gpropname4, "Checkbox1"));
+		if (Checkbox2.isDisplayed()) {
+			reportStep(Checkbox2.getText() + "is checked", "Pass");
+		} else {
+			reportStep("Checkbox is not checked", "Fail");
+		}
+		
+		click(propElement(getPropfile(gpropname4, "Backbutton")));
+		waitTime(3000);
+		WebElement Zipcodefield2 = propElement(getPropfile(gpropname4, "Zipcode"));
+		clearAndType(Zipcodefield2, Zipcode11);
+		propElement(getPropfile(gpropname3, "Nextbutton")).click();
+		reportStep("Zipcode filed text box allows to enter more than  9 digit " + Zipcode11, "Fail");
+
+		return this;
+	}
+
 	public Pg2TeacherRegistration verifyzipcodeselection() {
 		String zipcode = "30001";
 		WebElement zipcodefield = propElement(getPropfile(gpropname4, "Zipcode"));
@@ -244,22 +287,32 @@ public class Pg2TeacherRegistration extends ProjectSpecificMethods {
 		return this;
 	}
 
+	@Given("Click on next without entering any valid data in School, Zipcode as none for Teacherstate and verify the error messages.")
+	public Pg2TeacherRegistration verifyblankfield() {
+
+		click(propElement(getPropfile(gpropname3, "Nextbutton")));
+		waitTime(3000);
+
+		reportStep("Error msg Is displayed for school field", "Pass");
+		return this;
+
+	}
+
 	@Given("Verify select vaild options and click on next button")
 	public Pg2TeacherRegistration verifyregistrationwithvaliddata() {
-		String SchoolName = getPropfile(gpropname4, "Schoolname");
+		String Schoolvalue = getPropfile(gpropname4, "Schoolname");
 
 		WebElement Schoolfield = propElement(getPropfile(gpropname4, "School"));
-		Schoolfield.sendKeys(SchoolName);
-
+		clearAndType(Schoolfield, Schoolvalue);
+		String zipcodevalue = getPropfile(gpropname4, "Zipcode5");
 		WebElement Zipcodefield = propElement(getPropfile(gpropname4, "Zipcode"));
-		Zipcodefield.sendKeys(getPropfile(gpropname4, "Zipcode5"));
-
+		clearAndType(Zipcodefield, zipcodevalue);
 		String Teachstatevalue = getPropfile(gpropname4, "Teachstatevalue");
 
 		WebElement teachingstate = propElement(getPropfile(gpropname4, "Teachingstate"));
 		selectDropDownUsingText(teachingstate, Teachstatevalue);
 		waitTime(3000);
-
+		reportStep(Teachstatevalue + " is selected from dropdown", "Pass");
 		click(propElement(getPropfile(gpropname3, "Nextbutton")));
 		waitTime(3000);
 		return this;
@@ -270,7 +323,7 @@ public class Pg2TeacherRegistration extends ProjectSpecificMethods {
 
 		WebElement page3 = propElement(getPropfile(gpropname4, "Page3text"));
 		if (page3.isDisplayed()) {
-			reportStep(page3.getText() + "Page 3 is displayed", "Pass");
+			reportStep(page3.getText() + " : Verified Page 3 display successfully", "Pass");
 		} else {
 			reportStep("Page 3 is not displayed", "Fail");
 		}

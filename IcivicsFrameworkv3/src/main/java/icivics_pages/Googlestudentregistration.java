@@ -2,7 +2,6 @@ package icivics_pages;
 
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -13,7 +12,12 @@ import cucumber.api.java.en.Then;
 import projectSpecific.base.ProjectSpecificMethods;
 
 public class Googlestudentregistration extends ProjectSpecificMethods {
-	public String gpropname1 = "Homepage/homepageheader";
+	public String gpropname1 = "GoogleIntegration/GoogleSignOn";
+	public String gpropname2 = "GoogleIntegration/GoogleRegistration";
+	public String gpropname3 = "GoogleIntegration/Page1TeacherRegistration";
+	public String gpropname4 = "GoogleIntegration/Page2TeacherRegistration";
+	public String gpropname5 = "GoogleIntegration/Page3TeacherRegistration";
+	public String gpropname6 = "GoogleIntegration/Googlestudentregistration";
 
 	public Googlestudentregistration(RemoteWebDriver driver, ExtentTest node, Properties prop) {
 		this.driver = driver;
@@ -29,33 +33,24 @@ public class Googlestudentregistration extends ProjectSpecificMethods {
 	}
 
 	public Googlestudentregistration verifyregisterasstudent() {
-
-		WebElement signinwithgooglebutton = driver
-				.findElement(By.xpath("//img[@src='/themes/custom/refresh/images/google_signin.png']"));
+		WebElement signinwithgooglebutton = propElement(getPropfile(gpropname1, "Signinwithgooglebutton"));
 		signinwithgooglebutton.click();
-
 		waitTime(3000);
-		WebElement emailfield = driver.findElement(By.xpath("//input[@type='email']"));
+		WebElement emailfield = propElement(getPropfile(gpropname1, "Email"));
 		waitTime(3000);
 		emailfield.sendKeys("amatt.teacher26@gedu.demo.icivics.org");
-
-		WebElement nextbutton = driver.findElement(By.xpath("//span[text()='Next']"));
+		WebElement nextbutton = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton.click();
 		waitTime(3000);
-		WebElement pwdfield = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement pwdfield = propElement(getPropfile(gpropname1, "Password"));
 
 		pwdfield.sendKeys("Freedom17@");
 		waitTime(3000);
-		WebElement nextbutton1 = driver.findElement(By.xpath("//span[text()='Next']"));
-		if (nextbutton1.isDisplayed()) {
-			nextbutton1.click();
-			waitTime(3000);
-			reportStep("Registration page display", "Pass");
-		} else {
-			reportStep("Registration page not display", "Fail");
-		}
+		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
+
+		nextbutton1.click();
 		waitTime(3000);
-		WebElement studentasregisterbutton = driver.findElement(By.xpath("//div/h4[text()='Register as a Student!']"));
+		WebElement studentasregisterbutton = propElement(getPropfile(gpropname6, "Registerasstudent"));
 		studentasregisterbutton.click();
 		waitTime(3000);
 		return this;
@@ -63,18 +58,14 @@ public class Googlestudentregistration extends ProjectSpecificMethods {
 
 	@Then("Verify field for agree to terms of use privacy policy")
 	public Googlestudentregistration verifyagreetotermsfield() {
-		WebElement agreetoterrms = driver.findElement(By.xpath("//label[@class='control-label option']/input"));
+		WebElement agreetoterrms = propElement(getPropfile(gpropname6, "Agreetoterms"));
+
 		if (agreetoterrms.isDisplayed()) {
-			reportStep(agreetoterrms.getText() + "field is present", "Pass");
+			reportStep("Agreetoterrms field is not checked by default", "Pass");
 		} else {
-			reportStep(agreetoterrms.getText() + " field is not present", "Fail");
+			reportStep("Agreetoterrms field is checked", "Fail");
 		}
-		if (agreetoterrms.isSelected()) {
-			reportStep(agreetoterrms.getText() + "field is checked", "Pass");
-		} else {
-			reportStep(agreetoterrms.getText() + "field is not checked by default", "Fail");
-		}
-		WebElement finishbutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+		WebElement finishbutton = propElement(getPropfile(gpropname6, "Finishbutton"));
 		if (finishbutton.isDisplayed()) {
 			reportStep("Finish button is present", "Pass");
 		} else {
@@ -85,23 +76,21 @@ public class Googlestudentregistration extends ProjectSpecificMethods {
 
 	@Given("Leave agree to terms of use checkbox unchecked and click finish and verify the result")
 	public Googlestudentregistration verifyerrormsg() {
-		WebElement agreetoterrms = driver.findElement(By.xpath("//label[@class='control-label option']/input"));
-		WebElement finishbutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+
+		WebElement finishbutton = propElement(getPropfile(gpropname6, "Finishbutton"));
 		finishbutton.click();
 		waitTime(3000);
-		WebElement errormsg = driver.findElement(By.xpath("//div[@class='alert alert-danger alert-dismissible']/p"));
-		WebElement errormsg1 = driver
-				.findElement(By.xpath("//div[@class='alert alert-danger alert-dismissible']/descendant::li"));
-		WebElement errormsg2 = driver
-				.findElement(By.xpath("//div[@class='form-item--error-message alert alert-danger alert-sm']"));
+		WebElement errormsg = propElement(getPropfile(gpropname6, "Errormsg"));
+		WebElement errormsg1 = propElement(getPropfile(gpropname6, "Errormsg1"));
+		WebElement errormsg2 = propElement(getPropfile(gpropname6, "Errormsg2"));
 		if (errormsg.isDisplayed() && errormsg1.isDisplayed() && errormsg2.isDisplayed()) {
 			waitTime(3000);
 			verifyPartialText(errormsg, "1 error has been found:");
-			reportStep(errormsg.getText() + "is verified", "Pass");
+			reportStep(errormsg.getText() + " is verified", "Pass");
 			verifyPartialText(errormsg1, "I agree to the");
-			reportStep(errormsg1.getText() + "is verified", "Pass");
+			reportStep(errormsg1.getText() + " is verified", "Pass");
 			verifyPartialText(errormsg2, "You must agree with Terms of Use and Privacy Policy to register!");
-			reportStep(errormsg2.getText() + "is verified", "Pass");
+			reportStep(errormsg2.getText() + " is verified", "Pass");
 		} else {
 			reportStep("Errormsg is not present", "Fail");
 		}
@@ -111,14 +100,14 @@ public class Googlestudentregistration extends ProjectSpecificMethods {
 
 	@Given("Verify Check box for agree to terms of use and click finish")
 	public Googlestudentregistration verifysubmit() {
-		WebElement agreetoterrms = driver.findElement(By.xpath("//label[@class='control-label option']/input"));
+		WebElement agreetoterrms = propElement(getPropfile(gpropname6, "Agreetoterms"));
 		if (agreetoterrms.isDisplayed()) {
 			agreetoterrms.click();
 			reportStep("Checkbox is checked", "Pass");
 		} else {
 			reportStep("Checkbox is not checked", "Fail");
 		}
-		WebElement finishbutton = driver.findElement(By.xpath("//button[@id='edit-submit']"));
+		WebElement finishbutton = propElement(getPropfile(gpropname6, "Finishbutton"));
 		if (finishbutton.isDisplayed()) {
 			finishbutton.click();
 			waitTime(3000);
