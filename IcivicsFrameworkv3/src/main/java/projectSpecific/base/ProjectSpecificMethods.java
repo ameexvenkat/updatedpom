@@ -23,7 +23,7 @@ public class ProjectSpecificMethods extends SeleniumBase {
 	public void beforeMethod() throws IOException {
 		
 		//String URL = "https://staging.d9.icivics.org/";
-		String browser = "chrome";
+		String browser = "firefox";
 		//If u want to navigate from homepage to other icivics_pages,remove the double slash(//) line no 25,30,33 and add double slash in line no 29,32 
 		if (browser.equalsIgnoreCase("chrome")) {
 			driver = startApp1("chrome");

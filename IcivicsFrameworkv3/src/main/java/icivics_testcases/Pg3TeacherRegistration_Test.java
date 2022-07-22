@@ -31,7 +31,7 @@ public class Pg3TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C552- "Do you see fields for Sign Up for Emails, Agree to Terms of
 	// Use/Privacy Policy, and Sync Google Classroom courses?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 1)
 	public void C552_Verifypage3fields(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C552 - Do you see fields for Sign Up for Emails, Agree to Terms of Use/Privacy Policy, and Sync Google Classroom courses?");
@@ -40,7 +40,7 @@ public class Pg3TeacherRegistration_Test extends ProjectSpecificMethods {
 	}
 	// C553- "Can you select Back to proceed to the previous page?"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 2)
 	public void C553_Verifybackbutton(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C553 - Can you select Back to proceed to the previous page?");
 		extent.attachReporter(spark);
@@ -49,17 +49,17 @@ public class Pg3TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C554- "If you do not check agree to terms of use, does it display an error
 	// message"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 3)
 	public void C554_Verifygettingstartedpagewithemailcheck1(String URL) throws IOException, InterruptedException {
 		node = test.createNode("C554 - If you do not check agree to terms of use, does it display an error message");
 		extent.attachReporter(spark);
-		new Pg3TeacherRegistration(driver, node, prop).launchURL(URL).Registrationpage()
-				.verifygettingstartedpagewithemailcheck();
+		new Pg3TeacherRegistration(driver, node, prop).launchURL(URL).Registrationpage().
+		verifyunchecktermsofusecheckbox();
 	}
 	// C555- "If you enter valid information, do not check sync classes, does it
 	// move you to the next page"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	@Test(dataProvider = "fetchData", priority = 4)
 	public void C555_Verifygettingstartedpagewithemailcheck(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C555 - If you enter valid information, do not check sync classes, does it move you to the next page");
@@ -70,12 +70,22 @@ public class Pg3TeacherRegistration_Test extends ProjectSpecificMethods {
 	// C555- "If you enter valid information, do not check sync classes, does it
 	// move you to the next page"
 
-	@Test(dataProvider = "fetchData", priority = 0)
+	/*@Test(dataProvider = "fetchData", priority = 5)
 	public void C555_Verifygettingstartedpagewithemailuncheck(String URL) throws IOException, InterruptedException {
 		node = test.createNode(
 				"C555 - If you enter valid information, do not check sync classes, does it move you to the next page");
 		extent.attachReporter(spark);
 		new Pg3TeacherRegistration(driver, node, prop).launchURL(URL).Registrationpage().
 		verifygettingstartedpagewithemailuncheck();
-	}
+	}*/
+	// C556- "If you enter valid information, do check sync classes, does it move you to the next page"
+
+		@Test(dataProvider = "fetchData", priority = 6)
+		public void C556_Verifysynccheckbox(String URL) throws IOException, InterruptedException {
+			node = test.createNode(
+					"C556 - If you enter valid information, do check sync classes, does it move you to the next page");
+			extent.attachReporter(spark);
+			new Pg3TeacherRegistration(driver, node, prop).launchURL(URL).Registrationpage1() .
+			verifywithchecksyncclasses() ;
+		}
 }

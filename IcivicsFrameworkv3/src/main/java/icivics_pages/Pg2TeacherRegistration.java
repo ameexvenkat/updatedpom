@@ -52,7 +52,6 @@ public class Pg2TeacherRegistration extends ProjectSpecificMethods {
 		waitTime(3000);
 		WebElement nextbutton1 = propElement(getPropfile(gpropname1, "Nextbutton"));
 		nextbutton1.click();
-
 		WebElement registeraseducatorbutton = propElement(getPropfile(gpropname1, "RegisterasEducator"));
 
 		registeraseducatorbutton.click();

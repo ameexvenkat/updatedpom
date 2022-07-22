@@ -17,3 +17,7 @@ Given Leave terms of use checkbox unchecked and verify the result
 Scenario: C554 -If you enter valid information, do not check sync classes, does it move you to the next page
 Given Make valid selections - check terms of use, check emails, leave sync classes unchecked and verify the result
 Then Make valid selections - check terms of use, uncheck emails, leave sync classes unchecked and verify the result
+
+Scenario: C556 - If you enter valid information, do check sync classes, does it move you to the next page
+Given  Make valid selections - check terms of use, check emails, check sync classes unchecked and verify the result
+ 
