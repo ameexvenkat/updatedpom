@@ -3,19 +3,20 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="icivics_testcases.Pg2TeacherRegistration_Test">
+      <class name="icivics_testcases.Pg3TeacherRegistration_Test">
         <methods>
           <include name="setUpClass"/>
-          <include name="C547_Verifyfieldselection" invocation-numbers="0"/>
+          <include name="C555_Verifygettingstartedpagewithemailcheck" invocation-numbers="0"/>
+          <include name="setValues"/>
           <include name="afterMethod"/>
           <include name="tearDownClass"/>
           <include name="stopReport"/>
+          <include name="C556_Verifysynccheckbox" invocation-numbers="0"/>
           <include name="beforeMethod"/>
           <include name="report"/>
-          <include name="setValues"/>
           <include name="startReport"/>
         </methods>
-      </class> <!-- icivics_testcases.Pg2TeacherRegistration_Test -->
+      </class> <!-- icivics_testcases.Pg3TeacherRegistration_Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
